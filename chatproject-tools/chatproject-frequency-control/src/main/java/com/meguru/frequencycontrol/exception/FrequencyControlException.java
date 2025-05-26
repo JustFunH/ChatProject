@@ -6,7 +6,7 @@ import lombok.Data;
  * 自定义限流异常
  */
 @Data
-public class FrequencyControlException extends RuntimeException{
+public class FrequencyControlException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
     /**

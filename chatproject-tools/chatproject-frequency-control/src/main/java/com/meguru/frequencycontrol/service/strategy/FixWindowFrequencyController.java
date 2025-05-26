@@ -35,7 +35,7 @@ public class FixWindowFrequencyController extends AbstractFrequencyControlServic
     }
 
     @Override
-    protected void addFrequencyControlStatisticsCount(Map<String, FixedWindowDTO> frencyControlMap){
+    protected void addFrequencyControlStatisticsCount(Map<String, FixedWindowDTO> frencyControlMap) {
         frencyControlMap.forEach((k, v) -> RedisUtils.inc(k, v.getTime(), v.getUnit()));
     }
 

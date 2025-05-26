@@ -32,17 +32,19 @@ public class AsserUtil {
 
     /**
      * 注解验证参数(校验到失败就结束)
+     *
      * @param obj
      */
     public static <T> void fastFailValidate(T obj) {
         Set<ConstraintViolation<T>> constraintViolations = failFastValidator.validate(obj);
         if (constraintViolations.size() > 0) {
-            throwException(CommonErrorEnum.PARAM_VALID,constraintViolations.iterator().next().getMessage());
+            throwException(CommonErrorEnum.PARAM_VALID, constraintViolations.iterator().next().getMessage());
         }
     }
 
     /**
      * 注解验证参数(全部校验,抛出异常)
+     *
      * @param obj
      */
     public static <T> void allCheckValidateThrow(T obj) {
@@ -63,16 +65,17 @@ public class AsserUtil {
 
     /**
      * 注解验证参数(全部校验,返回异常信息集合)
+     *
      * @param obj
      */
-    public static <T> Map<String,String> allCheckValidate(T obj) {
+    public static <T> Map<String, String> allCheckValidate(T obj) {
         Set<ConstraintViolation<T>> constraintViolations = validator.validate(obj);
         if (constraintViolations.size() > 0) {
-            Map<String,String> errorMessages= new HashMap<>();
+            Map<String, String> errorMessages = new HashMap<>();
             Iterator<ConstraintViolation<T>> iterator = constraintViolations.iterator();
             while (iterator.hasNext()) {
                 ConstraintViolation<T> violation = iterator.next();
-                errorMessages.put(violation.getPropertyPath().toString(),violation.getMessage());
+                errorMessages.put(violation.getPropertyPath().toString(), violation.getMessage());
             }
             return errorMessages;
         }

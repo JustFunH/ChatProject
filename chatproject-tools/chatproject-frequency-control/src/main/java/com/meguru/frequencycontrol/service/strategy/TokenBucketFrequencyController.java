@@ -36,7 +36,7 @@ public class TokenBucketFrequencyController extends AbstractFrequencyControlServ
     @Override
     protected void addFrequencyControlStatisticsCount(Map<String, TokenBucketDTO> frequencyControlMap) {
         List<String> frequencyKeys = new ArrayList<>(frequencyControlMap.keySet());
-        for(String key : frequencyKeys) {
+        for (String key : frequencyKeys) {
             TokenBucketDTO controlDTO = frequencyControlMap.get(key);
             tokenBucketManager.createTokenBucket(key, controlDTO.getCapacity(), controlDTO.getRefillRate());
             tokenBucketManager.deductionToken(key, 1);

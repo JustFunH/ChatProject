@@ -29,13 +29,14 @@ public abstract class AbstractFrequencyControlService<K extends FrequencyControl
 
     /**
      * 频率控制执行方法
+     *
      * @param frequencyControlMap
      * @param supplier
      * @return
      * @throws Throwable
      */
     private <T> T executeWithFrequencyControlMap(Map<String, K> frequencyControlMap, SupplierThrowWithoutParam<T> supplier) throws Throwable {
-        if(reachRateLimit(frequencyControlMap)) {
+        if (reachRateLimit(frequencyControlMap)) {
             throw new FrequencyControlException(CommonErrorEnum.FREQUENCY_LIMIT);
         }
         try {
@@ -53,17 +54,18 @@ public abstract class AbstractFrequencyControlService<K extends FrequencyControl
      * @throws Throwable
      */
     @SuppressWarnings("unchecked")
-    public  <T> T executeWithFrequencyControlList(List<K> frequencyControlList, SupplierThrowWithoutParam<T> supplier) throws Throwable{
+    public <T> T executeWithFrequencyControlList(List<K> frequencyControlList, SupplierThrowWithoutParam<T> supplier) throws Throwable {
         boolean existsFrequencyControlHasNullKey = frequencyControlList.stream().anyMatch(frequencyControl -> ObjectUtils.isEmpty(frequencyControl.getKey()));
         AsserUtil.isFalse(existsFrequencyControlHasNullKey, CommonErrorEnum.FREQUENCY_CONTROL_KEY_NULL);
-        Map<String, K> frequencyControlMap = frequencyControlList.stream().collect(Collectors.groupingBy(K::getKey,  Collectors.collectingAndThen(Collectors.toList(), list -> list.get(0))));
+        Map<String, K> frequencyControlMap = frequencyControlList.stream().collect(Collectors.groupingBy(K::getKey, Collectors.collectingAndThen(Collectors.toList(), list -> list.get(0))));
         return executeWithFrequencyControlMap(frequencyControlMap, supplier);
     }
 
     /**
      * 单限流策略的条用方法-编程式调用
-     * @param frequencyControl  单个频控对象
-     * @param supplier          服务提供者
+     *
+     * @param frequencyControl 单个频控对象
+     * @param supplier         服务提供者
      * @return
      */
     public <T> T executeWithFrequencyControl(K frequencyControl, SupplierThrowWithoutParam<T> supplier) throws Throwable {
@@ -82,6 +84,7 @@ public abstract class AbstractFrequencyControlService<K extends FrequencyControl
 
     /**
      * 是否达到限流阈值
+     *
      * @param frequencyControlMap
      * @return true：达到限流阈值，false：未达到限流阈值
      */

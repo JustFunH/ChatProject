@@ -24,11 +24,11 @@ public class SlidingWindowFrequencyController extends AbstractFrequencyControlSe
     @Override
     protected boolean reachRateLimit(Map<String, SlidingWindowDTO> frequencyControlMap) {
         List<String> frequencyKeys = new ArrayList<>(frequencyControlMap.keySet());
-        for (String key : frequencyKeys){
+        for (String key : frequencyKeys) {
             SlidingWindowDTO controlDTO = frequencyControlMap.get(key);
             Long count = RedisUtils.ZSetGet(key);
             int frequencyControlCount = controlDTO.getCount();
-            if(Objects.nonNull(count) && count >= frequencyControlCount) {
+            if (Objects.nonNull(count) && count >= frequencyControlCount) {
                 log.warn("滑动窗口频率限制 key:{}, count:{}", key, count);
                 return true;
             }

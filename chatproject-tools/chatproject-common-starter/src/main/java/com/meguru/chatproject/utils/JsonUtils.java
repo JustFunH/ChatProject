@@ -46,7 +46,7 @@ public class JsonUtils {
         }
     }
 
-    public static <T> T nodeToValue(JsonNode node, Class<T> clz){
+    public static <T> T nodeToValue(JsonNode node, Class<T> clz) {
         try {
             return jsonMapper.treeToValue(node, clz);
         } catch (JsonProcessingException e) {

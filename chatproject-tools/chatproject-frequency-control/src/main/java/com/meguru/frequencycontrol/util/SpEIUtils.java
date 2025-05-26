@@ -17,7 +17,7 @@ public class SpEIUtils {
     public static String parseSpEl(Method method, Object[] args, String spEl) {
         String[] params = Optional.ofNullable(parameterNameDiscoverer.getParameterNames(method)).orElse(new String[]{});
         EvaluationContext context = new StandardEvaluationContext();
-        for(int i = 0; i < args.length; i++) {
+        for (int i = 0; i < args.length; i++) {
             context.setVariable(params[i], args[i]);
         }
         Expression expression = parser.parseExpression(spEl);

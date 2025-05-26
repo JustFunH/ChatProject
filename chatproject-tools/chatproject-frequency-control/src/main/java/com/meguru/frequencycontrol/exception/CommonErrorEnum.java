@@ -3,7 +3,7 @@ package com.meguru.frequencycontrol.exception;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public enum CommonErrorEnum implements ErrorEnum{
+public enum CommonErrorEnum implements ErrorEnum {
     //==================================common==================================
     BUSINESS_ERROR(1001, "{0}"),
     //==================================user==================================
