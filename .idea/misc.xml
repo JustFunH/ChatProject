@@ -6,11 +6,13 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/chatproject-chat-server/pom.xml" />
+        <option value="$PROJECT_DIR$/chatproject-server/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/chatproject-chat-server/pom.xml" />
+        <option value="$PROJECT_DIR$/chatproject-tools/mallchat-frequency-control/pom.xml" />
       </set>
     </option>
   </component>
