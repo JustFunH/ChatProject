@@ -18,7 +18,6 @@
         <module>chatproject-frequency-control</module>
         <module>chatproject-oss-starter</module>
         <module>chatproject-transaction</module>
-
     </modules>
 
 </project>

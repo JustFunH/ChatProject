@@ -1,8 +1,8 @@
 package com.meguru.frequencycontrol.aspect;
 
 import cn.hutool.core.util.StrUtil;
-import com.meguru.chatproject.common.FrequencyControlConstant;
 import com.meguru.frequencycontrol.annotation.FrequencyControl;
+import com.meguru.frequencycontrol.constant.FrequencyControlConstant;
 import com.meguru.frequencycontrol.domain.FixedWindowDTO;
 import com.meguru.frequencycontrol.domain.FrequencyControlDTO;
 import com.meguru.frequencycontrol.domain.SlidingWindowDTO;

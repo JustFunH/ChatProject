@@ -1,6 +1,6 @@
 package com.meguru.frequencycontrol.annotation;
 
-import com.meguru.chatproject.common.FrequencyControlConstant;
+import com.meguru.frequencycontrol.constant.FrequencyControlConstant;
 
 import java.lang.annotation.*;
 import java.util.concurrent.TimeUnit;

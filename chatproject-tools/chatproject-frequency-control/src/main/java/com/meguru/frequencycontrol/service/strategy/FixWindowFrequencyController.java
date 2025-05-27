@@ -1,7 +1,7 @@
 package com.meguru.frequencycontrol.service.strategy;
 
-import com.meguru.chatproject.common.FrequencyControlConstant;
 import com.meguru.chatproject.utils.RedisUtils;
+import com.meguru.frequencycontrol.constant.FrequencyControlConstant;
 import com.meguru.frequencycontrol.domain.FixedWindowDTO;
 import com.meguru.frequencycontrol.service.AbstractFrequencyControlService;
 import lombok.extern.slf4j.Slf4j;

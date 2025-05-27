@@ -1,4 +1,4 @@
-package com.meguru.chatproject.common;
+package com.meguru.frequencycontrol.constant;
 
 public interface FrequencyControlConstant {
     String TOTAL_COUNT_WITH_IN_FIX_TIME = "TotalCountWithInFixTime";

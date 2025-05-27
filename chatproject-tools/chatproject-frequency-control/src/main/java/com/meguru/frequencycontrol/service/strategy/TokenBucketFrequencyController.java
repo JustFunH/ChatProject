@@ -1,6 +1,6 @@
 package com.meguru.frequencycontrol.service.strategy;
 
-import com.meguru.chatproject.common.FrequencyControlConstant;
+import com.meguru.frequencycontrol.constant.FrequencyControlConstant;
 import com.meguru.frequencycontrol.domain.TokenBucketDTO;
 import com.meguru.frequencycontrol.mannager.TokenBucketManager;
 import com.meguru.frequencycontrol.service.AbstractFrequencyControlService;
