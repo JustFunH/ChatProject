@@ -1,3 +1,3 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.meguru.chatproject.transaction.config.TransactionAutoConfiguration
+  com.meguru.chatproject.config.TransactionAutoConfiguration

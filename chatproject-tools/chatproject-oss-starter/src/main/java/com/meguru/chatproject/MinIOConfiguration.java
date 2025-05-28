@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(OssProperties.class)
-@ConditionalOnExpression("${oss.enalbed}")
+@ConditionalOnExpression("${oss.enabled:true}")
 @ConditionalOnProperty(value = "oss.type", havingValue = "minio")
 public class MinIOConfiguration {
     @Bean

@@ -26,10 +26,10 @@ public class FrequencyControlStrategyFactory {
 
     /**
      * 根据名称获取策略类
-     *
-     * @param strategyName
-     * @return
+     *  @param strategyName 策略名称
+     *  @return 对应的限流策略类
      */
+    @SuppressWarnings("unchecked")
     public static <K extends FrequencyControlDTO> AbstractFrequencyControlService<K> getFrequencyControllerByName(String strategyName) {
         return (AbstractFrequencyControlService<K>) serviceStrategyMap.get(strategyName);
     }

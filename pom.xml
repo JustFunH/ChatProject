@@ -39,13 +39,21 @@
         <logstash-logback.version>7.2</logstash-logback.version>
         <minio.version>8.4.5</minio.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
-        <lombok.version>1.18.10</lombok.version>
+        <lombok.version>1.18.26</lombok.version>
         <netty-all.version>4.1.76.Final</netty-all.version>
         <mybatis-plus-boot-starter.version>3.4.0</mybatis-plus-boot-starter.version>
         <jsoup.version>1.15.3</jsoup.version>
         <okhttp.version>4.8.1</okhttp.version>
         <redisson-spring-boot-starter.version>3.17.1</redisson-spring-boot-starter.version>
         <knife4j-spring-boot-starter.version>2.0.9</knife4j-spring-boot-starter.version>
+        <java-jwt.version>3.19.0</java-jwt.version>
+        <rocketmq-spring-boot-starter.version>2.2.2</rocketmq-spring-boot-starter.version>
+        <velocity-engine-core.version>2.0</velocity-engine-core.version>
+        <p6spy.version>3.9.1</p6spy.version>
+        <spring-test.version>5.3.19</spring-test.version>
+        <project.version>1.0-SNAPSHOT</project.version>
+        <jsr305.version>3.0.2</jsr305.version>
+
     </properties>
 
 
@@ -54,17 +62,17 @@
             <dependency>
                 <groupId>com.meguru</groupId>
                 <artifactId>chatproject-common-starter</artifactId>
-                <version>${version}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.meguru</groupId>
                 <artifactId>chatproject-oss-starter</artifactId>
-                <version>${version}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.meguru</groupId>
                 <artifactId>chatproject-transaction</artifactId>
-                <version>${version}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.squareup.okhttp3</groupId>
@@ -137,7 +145,43 @@
                 <artifactId>knife4j-spring-boot-starter</artifactId>
                 <version>${knife4j-spring-boot-starter.version}</version>
             </dependency>
+            <!-- JWT -->
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${java-jwt.version}</version>
+            </dependency>
+            <!-- RocketMQ -->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>${velocity-engine-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>p6spy</groupId>
+                <artifactId>p6spy</artifactId>
+                <version>${p6spy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring-test.version}</version>
+            </dependency>
+            <!-- JSR305 提供@Nullable和@Nonnull -->
+            <dependency>
+                <groupId>com.google.code.findbugs</groupId>
+                <artifactId>jsr305</artifactId>
+                <version>${jsr305.version}</version>
+            </dependency>
+
         </dependencies>
+
+
     </dependencyManagement>
 
 </project>
