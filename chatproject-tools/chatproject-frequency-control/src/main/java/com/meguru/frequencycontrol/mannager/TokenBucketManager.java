@@ -32,5 +32,4 @@ public class TokenBucketManager {
             tokenBucket.deductionToken(permits);
         }
     }
-
 }

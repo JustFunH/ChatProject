@@ -46,6 +46,9 @@ public class FrequencyControlAspect {
                     key = SpEIUtils.parseSpEl(method, joinPoint.getArgs(), frequencyControl.spEl());
                     break;
                 case IP:
+                    key = RequestHolder.get().getIp();
+                    break;
+                case UID:
                     key = RequestHolder.get().getUid().toString();
             }
             keyMap.put(prefix + ":" + key, frequencyControl);
