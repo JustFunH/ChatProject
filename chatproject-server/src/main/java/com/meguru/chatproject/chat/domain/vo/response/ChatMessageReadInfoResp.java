@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 
 /**
  * Description:
- * Author: <a href="https://github.com/zongzibinbin">abin</a>
- * Date: 2023-07-17
+ * @author Meguru
+ * @since 2025-05-28
  */
 @Data
 @Builder

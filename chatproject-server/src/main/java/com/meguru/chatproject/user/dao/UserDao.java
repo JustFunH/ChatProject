@@ -1,8 +1,12 @@
 package com.meguru.chatproject.user.dao;
 
 import cn.hutool.core.collection.CollectionUtil;
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.meguru.chatproject.common.domain.enums.NormalOrNoEnum;
+import com.meguru.chatproject.common.domain.vo.request.CursorPageBaseReq;
+import com.meguru.chatproject.common.domain.vo.response.CursorPageBaseResp;
+import com.meguru.chatproject.common.utils.CursorUtils;
 import com.meguru.chatproject.user.domain.entity.User;
 import com.meguru.chatproject.user.domain.enums.ChatActiveStatusEnum;
 import com.meguru.chatproject.user.mapper.UserMapper;
@@ -26,6 +30,10 @@ public class UserDao extends ServiceImpl<UserMapper, User> {
         update.setId(uid);
         update.setName(name);
         updateById(update);
+    }
+
+    public User getByUsername(String username) {
+        return lambdaQuery().eq(User::getUsername, username).one();
     }
 
     public User getByName(String name) {
@@ -56,4 +64,10 @@ public class UserDao extends ServiceImpl<UserMapper, User> {
     }
 
 
+    public CursorPageBaseResp<User> getCursorPage(List<Long> memberUidList, CursorPageBaseReq request, ChatActiveStatusEnum online) {
+        return CursorUtils.getCursorPageByMysql(this, request, wrapper -> {
+            wrapper.eq(User::getActiveStatus, online.getStatus());//筛选上线或者离线的
+            wrapper.in(CollectionUtils.isNotEmpty(memberUidList), User::getId, memberUidList);//普通群对uid列表做限制
+        }, User::getLastOptTime);
+    }
 }

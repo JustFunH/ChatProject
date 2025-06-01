@@ -42,7 +42,7 @@ public class JwtUtils {
         String token = JWT.create()
                 .withClaim(UID_CLAIM, uid)
                 .withClaim(CREATED_TIME, new Date())
-                .sign(Algorithm.HMAC256(secret));
+                .sign(Algorithm.HMAC384(secret));
         return token;
     }
 
@@ -57,7 +57,7 @@ public class JwtUtils {
             return null;
         }
         try {
-            JWTVerifier verifier = JWT.require(Algorithm.HMAC256(secret)).build();
+            JWTVerifier verifier = JWT.require(Algorithm.HMAC384(secret)).build();
             DecodedJWT jwt = verifier.verify(token);
             return jwt.getClaims();
         } catch (Exception e) {

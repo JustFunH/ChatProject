@@ -13,9 +13,8 @@ import java.io.Serializable;
 
 /**
  * Description: 视频消息入参
- *
  * @author Meguru
- * @since 2025-05-28
+ * @since 2025-05-31
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

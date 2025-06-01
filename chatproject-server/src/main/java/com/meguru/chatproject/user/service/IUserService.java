@@ -1,7 +1,6 @@
 package com.meguru.chatproject.user.service;
 
 import com.meguru.chatproject.user.domain.dto.SummaryInfoDTO;
-import com.meguru.chatproject.user.domain.entity.User;
 import com.meguru.chatproject.user.domain.vo.request.user.BlackReq;
 import com.meguru.chatproject.user.domain.vo.request.user.ModifyNameReq;
 import com.meguru.chatproject.user.domain.vo.request.user.SummaryInfoReq;
@@ -34,14 +33,6 @@ public interface IUserService {
      * @param req
      */
     void modifyName(Long uid, ModifyNameReq req);
-
-
-    /**
-     * 用户注册，需要获得id
-     *
-     * @param user
-     */
-    void register(User user);
 
     /**
      * 获取用户聚合信息

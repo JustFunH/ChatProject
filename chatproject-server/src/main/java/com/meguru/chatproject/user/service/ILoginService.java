@@ -1,5 +1,9 @@
 package com.meguru.chatproject.user.service;
 
+import com.meguru.chatproject.user.domain.vo.request.user.LoginReq;
+import com.meguru.chatproject.user.domain.vo.request.user.RegisterReq;
+import com.meguru.chatproject.user.domain.vo.response.user.LoginSuccess;
+
 /**
  * Description: 登录相关处理类
  *
@@ -26,10 +30,10 @@ public interface ILoginService {
     /**
      * 登录成功，获取token
      *
-     * @param uid
+     * @param
      * @return 返回token
      */
-    String login(Long uid);
+    LoginSuccess login(LoginReq req);
 
     /**
      * 如果token有效，返回uid
@@ -39,4 +43,11 @@ public interface ILoginService {
      */
     Long getValidUid(String token);
 
+    /**
+     * 注册用户
+     *
+     * @param
+     * @return
+     */
+    LoginSuccess register(RegisterReq req);
 }

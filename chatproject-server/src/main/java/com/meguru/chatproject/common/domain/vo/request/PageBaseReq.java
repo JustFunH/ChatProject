@@ -9,8 +9,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 /**
- * @author <a href="https://github.com/zongzibinbin">abin</a>
- * @since 2023-03-19
+ * @author Meguru
+ * @since 2025-05-28
  */
 @Data
 @ApiModel("基础翻页请求")

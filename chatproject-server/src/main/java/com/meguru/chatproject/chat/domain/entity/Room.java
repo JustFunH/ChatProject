@@ -1,12 +1,12 @@
 package com.meguru.chatproject.chat.domain.entity;
 
-import com.meguru.chatproject.chat.domain.enums.HotFlagEnum;
-import com.meguru.chatproject.chat.domain.enums.RoomTypeEnum;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.meguru.chatproject.chat.domain.enums.HotFlagEnum;
+import com.meguru.chatproject.chat.domain.enums.RoomTypeEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -19,7 +19,7 @@ import java.util.Date;
  * </p>
  *
  * @author Meguru
- * @since 2025-05-28
+ * @since 2025-05-31
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -36,7 +36,7 @@ public class Room implements Serializable {
     /**
      * 房间类型 1群聊 2单聊
      *
-     * @see RoomTypeEnum
+     * @see com.meguru.chatproject.chat.domain.enums.RoomTypeEnum
      */
     @TableField("type")
     private Integer type;

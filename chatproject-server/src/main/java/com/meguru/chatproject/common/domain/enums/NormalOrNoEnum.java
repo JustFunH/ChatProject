@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 
 /**
  * Description: 是否正常的通用枚举
- * Author: <a href="https://github.com/zongzibinbin">abin</a>
- * Date: 2023-03-19
+ * @author Meguru
+ * @since 2025-05-28
  */
 @AllArgsConstructor
 @Getter

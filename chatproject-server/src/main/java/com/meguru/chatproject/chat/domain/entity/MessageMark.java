@@ -15,7 +15,7 @@ import java.util.Date;
  * </p>
  *
  * @author Meguru
- * @since 2025-05-28
+ * @since 2025-05-31
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -48,7 +48,7 @@ public class MessageMark implements Serializable {
     /**
      * 标记类型 1点赞 2举报
      *
-     * @see com.abin.mallchat.common.chat.domain.enums.MessageMarkTypeEnum
+     * @see com.meguru.chatproject.chat.domain.enums.MessageMarkTypeEnum
      */
     @TableField("type")
     private Integer type;

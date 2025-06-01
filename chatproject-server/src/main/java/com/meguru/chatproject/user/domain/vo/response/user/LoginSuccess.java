@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LoginSuccess {
 
-    private Long uid;
+    private Long id;
 
     private String name;
 

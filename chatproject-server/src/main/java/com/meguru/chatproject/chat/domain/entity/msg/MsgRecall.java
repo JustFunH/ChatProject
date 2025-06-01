@@ -10,9 +10,8 @@ import java.util.Date;
 
 /**
  * Description: 消息撤回
- *
  * @author Meguru
- * @since 2025-05-28
+ * @since 2025-05-31
  */
 @Data
 @Builder

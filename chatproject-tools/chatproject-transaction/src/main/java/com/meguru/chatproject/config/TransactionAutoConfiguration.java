@@ -3,10 +3,8 @@ package com.meguru.chatproject.config;
 import com.meguru.chatproject.annotation.SecureInvokeConfigurer;
 import com.meguru.chatproject.aspect.SecureInvokeAspect;
 import com.meguru.chatproject.dao.SecureInvokeRecordDao;
-import com.meguru.chatproject.mapper.SecureInvokeRecordMapper;
 import com.meguru.chatproject.service.MQProducer;
 import com.meguru.chatproject.service.SecureInvokeService;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +23,7 @@ import java.util.function.Supplier;
 
 @Configuration
 @EnableScheduling
-@MapperScan(basePackageClasses = SecureInvokeRecordMapper.class)
+//@MapperScan(basePackageClasses = SecureInvokeRecordMapper.class)
 @Import({SecureInvokeAspect.class, SecureInvokeRecordDao.class})
 public class TransactionAutoConfiguration {
 

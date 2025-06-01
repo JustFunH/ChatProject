@@ -8,10 +8,9 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
- * Description: 撤销管理员请求信息
- *
+ * Description: 撤销管理
  * @author Meguru
- * @since 2025-05-28
+ * @since 2025-05-31
  */
 @Data
 public class AdminRevokeReq {

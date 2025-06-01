@@ -34,7 +34,7 @@ public class Black implements Serializable {
     /**
      * 拉黑目标类型 1.ip 2uid
      *
-     * @see com.abin.mallchat.common.user.domain.enums.BlackTypeEnum
+     * @see com.meguru.chatproject.user.domain.enums.BlackTypeEnum
      */
     @TableField("type")
     private Integer type;

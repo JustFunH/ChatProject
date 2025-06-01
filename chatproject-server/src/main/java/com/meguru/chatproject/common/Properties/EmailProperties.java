@@ -4,9 +4,10 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-@Component
+
 @ConfigurationProperties(prefix = "captcha.email")
 @Data
+@Component
 public class EmailProperties {
     /**
      * 邮箱地址（注意：如果使用foxmail邮箱，此处user为qq号）

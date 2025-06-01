@@ -9,7 +9,7 @@ import com.meguru.frequencycontrol.domain.SlidingWindowDTO;
 import com.meguru.frequencycontrol.domain.TokenBucketDTO;
 import com.meguru.frequencycontrol.service.FrequencyControlUtil;
 import com.meguru.frequencycontrol.util.RequestHolder;
-import com.meguru.frequencycontrol.util.SpEIUtils;
+import com.meguru.frequencycontrol.util.SpElUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -43,7 +43,7 @@ public class FrequencyControlAspect {
             String key = "";
             switch (frequencyControl.target()) {
                 case EL:
-                    key = SpEIUtils.parseSpEl(method, joinPoint.getArgs(), frequencyControl.spEl());
+                    key = SpElUtils.parseSpEl(method, joinPoint.getArgs(), frequencyControl.spEl());
                     break;
                 case IP:
                     key = RequestHolder.get().getIp();

@@ -12,4 +12,5 @@ public class UserApplyEvent extends ApplicationEvent {
         super(source);
         this.userApply = userApply;
     }
+
 }

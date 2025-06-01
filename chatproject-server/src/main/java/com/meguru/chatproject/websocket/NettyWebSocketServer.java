@@ -9,7 +9,6 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
@@ -81,7 +80,7 @@ public class NettyWebSocketServer {
                         // 添加 WebSocket 协议处理器
                         pipeline.addLast(new WebSocketServerProtocolHandler("/"));
                         // 自定义handler
-                        //pipeline.addLast(NETTY_WEB_SOCKET_SERVER_HANDLER);
+                        pipeline.addLast(NETTY_WEB_SOCKET_SERVER_HANDLER);
                     }
                 });
         serverBootstrap.bind(WEB_SOCKET_PORT).sync();

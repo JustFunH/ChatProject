@@ -1,8 +1,8 @@
 package com.meguru.chatproject.chat.domain.entity.msg;
 
-import com.meguru.chatproject.common.utils.discover.domain.UrlInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.meguru.chatproject.common.utils.discover.domain.UrlInfo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,9 +14,8 @@ import java.util.Map;
 
 /**
  * Description: 消息扩展属性
- *
  * @author Meguru
- * @since 2025-05-28
+ * @since 2025-05-31
  */
 @Data
 @Builder

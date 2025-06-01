@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author <a href="https://github.com/zongzibinbin">abin</a>
- * @since 2023-03-19
+ * @author Meguru
+ * @since 2025-05-28
  */
 @Data
 @AllArgsConstructor

@@ -11,9 +11,8 @@ import java.io.Serializable;
 
 /**
  * Description: 表情图片消息入参
- *
  * @author Meguru
- * @since 2025-05-28
+ * @since 2025-05-31
  */
 @Data
 @Builder

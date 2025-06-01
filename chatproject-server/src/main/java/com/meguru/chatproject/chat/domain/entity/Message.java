@@ -1,11 +1,11 @@
 package com.meguru.chatproject.chat.domain.entity;
 
-import com.meguru.chatproject.chat.domain.entity.msg.MessageExtra;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
+import com.meguru.chatproject.chat.domain.entity.msg.MessageExtra;
 import lombok.*;
 
 import java.io.Serializable;
@@ -17,7 +17,7 @@ import java.util.Date;
  * </p>
  *
  * @author Meguru
- * @since 2025-05-28
+ * @since 2025-05-31
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

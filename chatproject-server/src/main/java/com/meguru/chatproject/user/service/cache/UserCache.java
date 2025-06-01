@@ -2,12 +2,11 @@ package com.meguru.chatproject.user.service.cache;
 
 
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.lang.Pair;
 import com.meguru.chatproject.common.constant.RedisKey;
-import com.meguru.chatproject.common.domain.vo.request.CursorPageBaseReq;
-import com.meguru.chatproject.common.domain.vo.response.CursorPageBaseResp;
+import com.meguru.chatproject.user.dao.BlackDao;
 import com.meguru.chatproject.user.dao.UserDao;
 import com.meguru.chatproject.user.dao.UserRoleDao;
+import com.meguru.chatproject.user.domain.entity.Black;
 import com.meguru.chatproject.user.domain.entity.User;
 import com.meguru.chatproject.user.domain.entity.UserRole;
 import com.meguru.chatproject.utils.RedisUtils;
@@ -32,6 +31,10 @@ public class UserCache {
     private UserDao userDao;
     @Autowired
     private UserRoleDao userRoleDao;
+    @Autowired
+    private BlackDao blackDao;
+    @Autowired
+    private UserSummaryCache userSummaryCache;
 
     public Long getOnlineNum() {
         String onlineKey = RedisKey.getKey(RedisKey.ONLINE_UID_ZET);
@@ -116,12 +119,23 @@ public class UserCache {
 
     public void userInfoChange(Long uid) {
         delUserInfo(uid);
+        userSummaryCache.delete(uid);
         refreshUserModifyTime(uid);
     }
 
     public void delUserInfo(Long uid) {
         String key = RedisKey.getKey(RedisKey.USER_INFO_STRING, uid);
         RedisUtils.del(key);
+    }
+
+    @Cacheable(cacheNames = "user", key = "'blackList'")
+    public Map<Integer, Set<String>> getBlackMap() {
+        Map<Integer, List<Black>> collect = blackDao.list().stream().collect(Collectors.groupingBy(Black::getType));
+        Map<Integer, Set<String>> result = new HashMap<>(collect.size());
+        for (Map.Entry<Integer, List<Black>> entry : collect.entrySet()) {
+            result.put(entry.getKey(), entry.getValue().stream().map(Black::getTarget).collect(Collectors.toSet()));
+        }
+        return result;
     }
 
     @CacheEvict(cacheNames = "user", key = "'blackList'")

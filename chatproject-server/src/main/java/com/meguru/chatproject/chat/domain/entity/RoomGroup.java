@@ -13,7 +13,7 @@ import java.util.Date;
  * </p>
  *
  * @author Meguru
- * @since 2025-05-28
+ * @since 2025-05-31
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

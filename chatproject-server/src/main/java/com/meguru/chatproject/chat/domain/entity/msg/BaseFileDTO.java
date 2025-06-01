@@ -12,10 +12,11 @@ import java.io.Serializable;
 
 /**
  * Description: 文件基类
- *
  * @author Meguru
- * @since 2025-05-28
+ * @since 2025-05-31
  */
+
+
 @Data
 @SuperBuilder
 @AllArgsConstructor

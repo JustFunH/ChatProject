@@ -5,9 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Size;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  * Description: 注册请求
@@ -37,5 +37,5 @@ public class RegisterReq {
 
     @NotBlank(message = "验证码不能为空")
     @Size(min = 6, max = 6, message = "验证码长度6位")
-    private String code;
+    private String verificationCode;
 }

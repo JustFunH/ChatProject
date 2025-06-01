@@ -1,9 +1,9 @@
 package com.meguru.chatproject.user.service.impl;
 
 import cn.hutool.core.util.StrUtil;
-import com.meguru.chatproject.common.event.UserRegisterEvent;
 import com.meguru.chatproject.common.exception.BusinessErrorEnum;
 import com.meguru.chatproject.common.utils.AssertUtil;
+import com.meguru.chatproject.sensitive.algorithm.SensitiveWordBs;
 import com.meguru.chatproject.user.dao.BlackDao;
 import com.meguru.chatproject.user.dao.UserDao;
 import com.meguru.chatproject.user.domain.dto.SummaryInfoDTO;
@@ -20,7 +20,6 @@ import com.meguru.chatproject.user.service.cache.UserCache;
 import com.meguru.chatproject.user.service.cache.UserSummaryCache;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,9 +46,7 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     private UserSummaryCache userSummaryCache;
     @Autowired
-    private ApplicationEventPublisher applicationEventPublisher;
-    //    @Autowired
-//    private SensitiveWordBs sensitiveWordBs;
+    private SensitiveWordBs sensitiveWordBs;
     @Autowired
     private UserDao userDao;
     @Autowired
@@ -65,17 +62,11 @@ public class UserServiceImpl implements IUserService {
     @Transactional
     public void modifyName(Long uid, ModifyNameReq req) {
         String newName = req.getName();
-        //AssertUtil.isFalse(sensitiveWordBs.hasSensitiveWord(newName), BusinessErrorEnum.USERNAME_HAS_SENSITIVE_WORD);
+        AssertUtil.isFalse(sensitiveWordBs.hasSensitiveWord(newName), BusinessErrorEnum.USERNAME_HAS_SENSITIVE_WORD);
         User oldUser = userDao.getByName(newName);
         AssertUtil.isEmpty(oldUser, BusinessErrorEnum.USERNAME_HAS_EXIST);
         userDao.modifyName(uid, newName);
         userCache.userInfoChange(uid);
-    }
-
-    @Override
-    public void register(User user) {
-        userDao.save(user);
-        applicationEventPublisher.publishEvent(new UserRegisterEvent(this, user));
     }
 
     @Override

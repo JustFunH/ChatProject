@@ -1,6 +1,6 @@
 package com.meguru.chatproject.common.factory;
 
-import com.meguru.chatproject.common.handler.GlobalUncaughtException;
+import com.meguru.chatproject.common.handler.GlobalUncaughtExceptionHandler;
 import lombok.AllArgsConstructor;
 
 import java.util.concurrent.ThreadFactory;
@@ -12,7 +12,7 @@ public class MyThreadFactory implements ThreadFactory {
     @Override
     public Thread newThread(Runnable r) {
         Thread thread = factory.newThread(r);
-        thread.setUncaughtExceptionHandler(GlobalUncaughtException.getInstance());
+        thread.setUncaughtExceptionHandler(GlobalUncaughtExceptionHandler.getInstance());
         return thread;
     }
 }

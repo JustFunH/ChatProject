@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * Description: 物品枚举
+ * Description: 拉黑类型枚举
  *
  * @author Meguru
  * @since 2025-05-28

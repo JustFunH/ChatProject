@@ -23,8 +23,7 @@ import java.util.List;
 @Service
 public class UserApplyDao extends ServiceImpl<UserApplyMapper, UserApply> {
     public UserApply getFriendApproving(Long uid, Long targetUid) {
-        return lambdaQuery()
-                .eq(UserApply::getUid, uid)
+        return lambdaQuery().eq(UserApply::getUid, uid)
                 .eq(UserApply::getTargetId, targetUid)
                 .eq(UserApply::getStatus, ApplyStatusEnum.WAIT_APPROVAL)
                 .eq(UserApply::getType, ApplyTypeEnum.ADD_FRIEND.getCode())
@@ -32,9 +31,8 @@ public class UserApplyDao extends ServiceImpl<UserApplyMapper, UserApply> {
     }
 
     public Integer getUnReadCount(Long targetId) {
-        return lambdaQuery()
-                .eq(UserApply::getTargetId, targetId)
-                .eq(UserApply::getStatus, ApplyReadStatusEnum.UNREAD.getCode())
+        return lambdaQuery().eq(UserApply::getTargetId, targetId)
+                .eq(UserApply::getReadStatus, ApplyReadStatusEnum.UNREAD.getCode())
                 .count();
     }
 
@@ -46,7 +44,7 @@ public class UserApplyDao extends ServiceImpl<UserApplyMapper, UserApply> {
                 .page(page);
     }
 
-    public void readApplies(Long uid, List<Long> applyIds) {
+    public void readApples(Long uid, List<Long> applyIds) {
         lambdaUpdate()
                 .set(UserApply::getReadStatus, ApplyReadStatusEnum.READ.getCode())
                 .eq(UserApply::getReadStatus, ApplyReadStatusEnum.UNREAD.getCode())
@@ -56,8 +54,7 @@ public class UserApplyDao extends ServiceImpl<UserApplyMapper, UserApply> {
     }
 
     public void agree(Long applyId) {
-        lambdaUpdate()
-                .set(UserApply::getStatus, ApplyStatusEnum.AGREE.getCode())
+        lambdaUpdate().set(UserApply::getStatus, ApplyStatusEnum.AGREE.getCode())
                 .eq(UserApply::getId, applyId)
                 .update();
     }

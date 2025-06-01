@@ -1,7 +1,7 @@
 package com.meguru.chatproject.user.controller;
 
 
-import com.meguru.chatproject.common.domain.vo.ApiResult;
+import com.meguru.chatproject.common.domain.vo.response.ApiResult;
 import com.meguru.chatproject.common.exception.BusinessErrorEnum;
 import com.meguru.chatproject.common.utils.AssertUtil;
 import com.meguru.chatproject.common.utils.RequestHolder;
@@ -46,19 +46,19 @@ public class UserController {
     @PostMapping("/public/register")
     @ApiOperation("用户注册")
     public ApiResult<LoginSuccess> register(@Valid @RequestBody RegisterReq req) {
-        return null;
+        return ApiResult.success(loginService.register(req));
     }
 
     @PostMapping("/public/login")
     @ApiOperation("用户登录")
     public ApiResult<LoginSuccess> login(@Valid @RequestBody LoginReq req) {
-        return null;
+        return ApiResult.success(loginService.login(req));
     }
 
-    @GetMapping("/public/send")
+    @PostMapping("/public/sendCode")
     @ApiOperation("发送验证码")
-    public ApiResult<Void> send() {
-        captchaService.sendEmailCaptcha("1553131898@qq.com");
+    public ApiResult<Void> send(@Valid @RequestBody SendCodeReq req) {
+        captchaService.sendEmailCaptcha(req.getEmail());
         return ApiResult.success();
     }
 

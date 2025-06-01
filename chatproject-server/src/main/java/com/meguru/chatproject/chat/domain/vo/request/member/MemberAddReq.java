@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
- * Description: 移除群成员
+ * Description: 添加群成员
  *
  * @author Meguru
  * @since 2025-05-28

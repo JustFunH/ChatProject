@@ -15,7 +15,7 @@ import com.meguru.chatproject.user.domain.vo.response.friend.FriendApplyResp;
 import com.meguru.chatproject.user.domain.vo.response.friend.FriendCheckResp;
 import com.meguru.chatproject.user.domain.vo.response.friend.FriendResp;
 import com.meguru.chatproject.user.domain.vo.response.friend.FriendUnreadResp;
-import com.meguru.chatproject.user.service.FriendService;
+import com.meguru.chatproject.user.service.IUserFriendService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +38,7 @@ import javax.validation.Valid;
 @Slf4j
 public class FriendController {
     @Resource
-    private FriendService friendService;
+    private IUserFriendService friendService;
 
     @GetMapping("/check")
     @ApiOperation("批量判断是否是自己好友")

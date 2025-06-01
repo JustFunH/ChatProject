@@ -12,8 +12,8 @@ import java.util.Map;
 
 /**
  * Description: 文本消息返回体
- * Author: <a href="https://github.com/zongzibinbin">abin</a>
- * Date: 2023-06-04
+ * @author Meguru
+ * @since 2025-05-28
  */
 @Data
 @Builder

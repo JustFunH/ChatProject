@@ -6,7 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @author zhongzb create on 2021/05/31
+ * @author Meguru
+ * @since 2025-05-28
  */
 @Data
 @NoArgsConstructor

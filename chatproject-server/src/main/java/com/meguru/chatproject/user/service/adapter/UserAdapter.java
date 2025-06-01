@@ -2,21 +2,29 @@ package com.meguru.chatproject.user.service.adapter;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.meguru.chatproject.user.domain.entity.User;
+import com.meguru.chatproject.user.domain.vo.response.user.LoginSuccess;
 import com.meguru.chatproject.user.domain.vo.response.user.UserInfoResp;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  * Description: 用户适配器
- *
  * @author Meguru
- * @since 2025-05-28
+ * @since 2025-05-30
  */
 @Slf4j
 public class UserAdapter {
 
-    public static UserInfoResp buildUserInfoResp(User user) {
+    public static UserInfoResp buildUserInfoResp(User userInfo) {
         UserInfoResp userInfoResp = new UserInfoResp();
-        BeanUtil.copyProperties(user, userInfoResp);
+        BeanUtil.copyProperties(userInfo, userInfoResp);
         return userInfoResp;
     }
+
+    public static LoginSuccess buildLoginSuccessResp(User userInfo, String token) {
+        LoginSuccess userInfoResp = new LoginSuccess();
+        BeanUtil.copyProperties(userInfo, userInfoResp);
+        userInfoResp.setToken(token);
+        return userInfoResp;
+    }
+
 }

@@ -6,14 +6,12 @@ import com.meguru.chatproject.common.Properties.EmailProperties;
 import com.meguru.chatproject.common.constant.RedisKey;
 import com.meguru.chatproject.common.exception.BusinessErrorEnum;
 import com.meguru.chatproject.common.exception.BusinessException;
+import com.meguru.chatproject.common.utils.AssertUtil;
 import com.meguru.chatproject.common.utils.VerifyCodeUtil;
 import com.meguru.chatproject.user.service.ICaptchaService;
 import com.meguru.chatproject.utils.RedisUtils;
 import lombok.RequiredArgsConstructor;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
@@ -58,9 +56,8 @@ public class CaptchaServiceImpl implements ICaptchaService {
      * 判断邮件配置是否完整
      */
     private void validateEmailProperties() {
-        if (emailProperties.getUser() == null || emailProperties.getPassword() == null || emailProperties.getFrom() == null || emailProperties.getHost() == null || emailProperties.getPort() == null) {
-            throw new BusinessException(BusinessErrorEnum.EMAIL_CONFIGURATION_EXCEPTION);
-        }
+        boolean valid = emailProperties.getUser() == null || emailProperties.getPassword() == null || emailProperties.getFrom() == null || emailProperties.getHost() == null || emailProperties.getPort() == null;
+        AssertUtil.isTrue(!valid, BusinessErrorEnum.EMAIL_CONFIGURATION_EXCEPTION);
     }
 
     /**
@@ -79,17 +76,12 @@ public class CaptchaServiceImpl implements ICaptchaService {
             String captcha = VerifyCodeUtil.generateVerifyCode();
             // 将新生成的验证码存储到Redis，并设置过期时间
             boolean saveResult = RedisUtils.set(redisKey, captcha, emailProperties.getExpireTime());
-            if (!saveResult) {
-                // 如果存储失败，抛出异常
-                throw new BusinessException(BusinessErrorEnum.EMAIL_VERIFICATION_CODE_FAILED);
-            }
+            AssertUtil.isTrue(saveResult, BusinessErrorEnum.EMAIL_VERIFICATION_CODE_FAILED);
             return captcha;
         } else {
             // 如果验证码存在，重置其在Redis中的过期时间
             boolean expireResult = RedisUtils.expire(redisKey, emailProperties.getExpireTime());
-            if (!expireResult) {
-                throw new BusinessException(BusinessErrorEnum.EMAIL_VERIFICATION_CODE_FAILED);
-            }
+            AssertUtil.isTrue(expireResult, BusinessErrorEnum.EMAIL_VERIFICATION_CODE_FAILED);
             return String.valueOf(oldCode);
         }
     }

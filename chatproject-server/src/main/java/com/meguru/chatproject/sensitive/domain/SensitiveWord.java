@@ -1,6 +1,8 @@
 package com.meguru.chatproject.sensitive.domain;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,6 +17,10 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 @TableName("sensitive_word")
 public class SensitiveWord {
+
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
+
     @TableField("word")
     private String word;
 }
