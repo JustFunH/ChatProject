@@ -1,6 +1,6 @@
 package com.meguru.frequencycontrol.aspect;
 
-import cn.hutool.core.util.StrUtil;
+
 import com.meguru.frequencycontrol.annotation.FrequencyControl;
 import com.meguru.frequencycontrol.constant.FrequencyControlConstant;
 import com.meguru.frequencycontrol.domain.FixedWindowDTO;
@@ -15,6 +15,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.dromara.hutool.core.text.StrUtil;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;

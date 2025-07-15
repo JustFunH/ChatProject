@@ -1,6 +1,5 @@
 package com.meguru.chatproject.common.aspect;
 
-import cn.hutool.core.util.StrUtil;
 import com.meguru.chatproject.common.annotation.RedissonLock;
 import com.meguru.chatproject.common.service.LockService;
 import com.meguru.frequencycontrol.util.SpElUtils;
@@ -9,6 +8,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.dromara.hutool.core.text.StrUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;

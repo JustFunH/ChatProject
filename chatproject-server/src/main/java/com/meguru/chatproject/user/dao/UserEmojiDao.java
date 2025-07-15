@@ -24,7 +24,7 @@ public class UserEmojiDao extends ServiceImpl<UserEmojiMapper, UserEmoji> {
                 .list();
     }
 
-    public int countByUid(Long uid) {
+    public long countByUid(Long uid) {
         return lambdaQuery()
                 .eq(UserEmoji::getUid, uid)
                 .count();

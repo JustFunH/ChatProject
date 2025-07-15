@@ -1,21 +1,22 @@
 package com.meguru.chatproject.service;
 
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.util.ReflectUtil;
-import cn.hutool.extra.spring.SpringUtil;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.meguru.chatproject.dao.SecureInvokeRecordDao;
 import com.meguru.chatproject.domain.dto.SecureInvokeDTO;
 import com.meguru.chatproject.domain.entity.SecureInvokeRecord;
 import com.meguru.chatproject.utils.JsonUtils;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.hutool.core.date.DateUtil;
+import org.dromara.hutool.core.reflect.method.MethodUtil;
+import org.dromara.hutool.extra.spring.SpringUtil;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.transaction.support.TransactionSynchronization;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
-import javax.validation.constraints.NotNull;
 import java.lang.reflect.Method;
 import java.util.Date;
 import java.util.List;
@@ -103,7 +104,7 @@ public class SecureInvokeService {
             Object bean = SpringUtil.getBean(beanClass);
             List<String> parameterStrings = JsonUtils.toList(secureInvokeDTO.getParameterTypes(), String.class);
             List<Class<?>> parameterClasses = getParameterClasses(parameterStrings);
-            Method method = ReflectUtil.getMethod(beanClass, secureInvokeDTO.getMethodName(), parameterClasses.toArray(new Class[]{}));
+            Method method = MethodUtil.getMethod(beanClass, secureInvokeDTO.getMethodName(), parameterClasses.toArray(new Class[]{}));
             Object[] args = getArgs(secureInvokeDTO, parameterClasses);
             method.invoke(bean, args);
             removeRecord(record.getId());

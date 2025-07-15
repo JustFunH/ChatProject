@@ -30,7 +30,7 @@ public class UserApplyDao extends ServiceImpl<UserApplyMapper, UserApply> {
                 .one();
     }
 
-    public Integer getUnReadCount(Long targetId) {
+    public Long getUnReadCount(Long targetId) {
         return lambdaQuery().eq(UserApply::getTargetId, targetId)
                 .eq(UserApply::getReadStatus, ApplyReadStatusEnum.UNREAD.getCode())
                 .count();

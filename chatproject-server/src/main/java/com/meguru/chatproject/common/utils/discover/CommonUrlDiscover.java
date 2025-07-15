@@ -1,6 +1,6 @@
 package com.meguru.chatproject.common.utils.discover;
 
-import cn.hutool.core.util.StrUtil;
+import org.dromara.hutool.core.text.StrUtil;
 import org.jetbrains.annotations.Nullable;
 import org.jsoup.nodes.Document;
 

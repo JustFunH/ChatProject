@@ -1,9 +1,6 @@
 package com.meguru.chatproject;
 
-import cn.hutool.core.date.DatePattern;
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.io.file.FileNameUtil;
-import cn.hutool.core.util.StrUtil;
+
 import com.meguru.chatproject.domain.OssReq;
 import com.meguru.chatproject.domain.OssResp;
 import io.minio.*;
@@ -13,6 +10,10 @@ import io.minio.messages.Item;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.hutool.core.data.id.UUID;
+import org.dromara.hutool.core.date.DateUtil;
+import org.dromara.hutool.core.io.file.FileNameUtil;
+import org.dromara.hutool.core.text.StrUtil;
 
 import java.io.InputStream;
 import java.time.ZonedDateTime;
@@ -132,9 +133,9 @@ public class MinIOTemplate {
      */
     public String generateAutoPath(OssReq req) {
         String uid = Optional.ofNullable(req.getUid()).map(String::valueOf).orElse("000000");
-        cn.hutool.core.lang.UUID uuid = cn.hutool.core.lang.UUID.fastUUID();
+        UUID uuid = UUID.fastUUID();
         String suffix = FileNameUtil.getSuffix(req.getFileName());
-        String yearAndMonth = DateUtil.format(new Date(), DatePattern.NORM_MONTH_PATTERN);
+        String yearAndMonth = DateUtil.format(new Date(), "yyyy-MM");
         return req.getFilePath() + StrUtil.SLASH + yearAndMonth + StrUtil.SLASH + uid + StrUtil.SLASH + uuid + StrUtil.DOT + suffix;
     }
 

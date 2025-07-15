@@ -1,7 +1,7 @@
 package com.meguru.chatproject.common.service.cache;
 
-import cn.hutool.core.collection.CollectionUtil;
 import com.meguru.chatproject.utils.RedisUtils;
+import org.dromara.hutool.core.collection.CollUtil;
 import org.springframework.data.util.Pair;
 
 import java.lang.reflect.ParameterizedType;
@@ -36,7 +36,7 @@ public abstract class AbstractRedisStringCache<IN, OUT> implements BatchCache<IN
 
     @Override
     public Map<IN, OUT> getBatch(List<IN> req) {
-        if (CollectionUtil.isEmpty(req)) {//防御性编程
+        if (CollUtil.isEmpty(req)) {//防御性编程
             return new HashMap<>();
         }
         //去重
@@ -54,7 +54,7 @@ public abstract class AbstractRedisStringCache<IN, OUT> implements BatchCache<IN
         }
         Map<IN, OUT> load = new HashMap<>();
         //不足的重新加载进redis
-        if (CollectionUtil.isNotEmpty(loadReqs)) {
+        if (CollUtil.isNotEmpty(loadReqs)) {
             //批量load
             load = load(loadReqs);
             Map<String, OUT> loadMap = load.entrySet().stream()

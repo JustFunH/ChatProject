@@ -2,12 +2,11 @@ package com.meguru.chatproject.chat.domain.vo.request;
 
 import com.meguru.chatproject.common.domain.vo.request.CursorPageBaseReq;
 import io.swagger.annotations.ApiModelProperty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.validation.constraints.NotNull;
 
 /**
  * Description: 消息列表请求

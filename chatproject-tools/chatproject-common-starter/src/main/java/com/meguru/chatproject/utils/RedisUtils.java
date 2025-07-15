@@ -1,7 +1,7 @@
 package com.meguru.chatproject.utils;
 
-import cn.hutool.extra.spring.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.hutool.extra.spring.SpringUtil;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.Cursor;
@@ -124,6 +124,7 @@ public class RedisUtils {
         while (cursor.hasNext()) {
             result.add(new String(cursor.next()));
         }
+
         try {
             RedisConnectionUtils.releaseConnection(rc, factory);
         } catch (Exception e) {

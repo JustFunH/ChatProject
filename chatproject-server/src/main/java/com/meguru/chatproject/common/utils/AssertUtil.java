@@ -1,15 +1,15 @@
 package com.meguru.chatproject.common.utils;
 
-import cn.hutool.core.util.ObjectUtil;
 import com.meguru.chatproject.common.exception.BusinessErrorEnum;
 import com.meguru.chatproject.common.exception.BusinessException;
 import com.meguru.chatproject.common.exception.CommonErrorEnum;
 import com.meguru.chatproject.common.exception.ErrorEnum;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import org.dromara.hutool.core.util.ObjUtil;
 import org.hibernate.validator.HibernateValidator;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
 import java.text.MessageFormat;
 import java.util.*;
 
@@ -138,19 +138,19 @@ public class AssertUtil {
     }
 
     public static void equal(Object o1, Object o2, String msg) {
-        if (!ObjectUtil.equal(o1, o2)) {
+        if (!ObjUtil.equals(o1, o2)) {
             throwException(msg);
         }
     }
 
     public static void notEqual(Object o1, Object o2, String msg) {
-        if (ObjectUtil.equal(o1, o2)) {
+        if (ObjUtil.equals(o1, o2)) {
             throwException(msg);
         }
     }
 
     private static boolean isEmpty(Object obj) {
-        return ObjectUtil.isEmpty(obj);
+        return ObjUtil.isEmpty(obj);
     }
 
     private static void throwException(String msg) {

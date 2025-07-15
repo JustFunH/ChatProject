@@ -1,11 +1,11 @@
 package com.meguru.chatproject.websocket;
 
-import cn.hutool.core.net.url.UrlBuilder;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.HttpHeaders;
 import org.apache.commons.lang3.StringUtils;
+import org.dromara.hutool.core.net.url.UrlBuilder;
 
 import java.net.InetSocketAddress;
 import java.util.Optional;

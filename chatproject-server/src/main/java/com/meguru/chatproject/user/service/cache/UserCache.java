@@ -1,7 +1,6 @@
 package com.meguru.chatproject.user.service.cache;
 
 
-import cn.hutool.core.collection.CollUtil;
 import com.meguru.chatproject.common.constant.RedisKey;
 import com.meguru.chatproject.user.dao.BlackDao;
 import com.meguru.chatproject.user.dao.UserDao;
@@ -10,6 +9,7 @@ import com.meguru.chatproject.user.domain.entity.Black;
 import com.meguru.chatproject.user.domain.entity.User;
 import com.meguru.chatproject.user.domain.entity.UserRole;
 import com.meguru.chatproject.utils.RedisUtils;
+import org.dromara.hutool.core.collection.CollUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;

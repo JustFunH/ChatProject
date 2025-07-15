@@ -14,11 +14,11 @@ import com.meguru.chatproject.user.service.cache.UserCache;
 import com.meguru.frequencycontrol.annotation.FrequencyControl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;

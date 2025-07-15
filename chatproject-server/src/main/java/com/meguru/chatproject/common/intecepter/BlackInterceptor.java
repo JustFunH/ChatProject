@@ -1,19 +1,19 @@
 package com.meguru.chatproject.common.intecepter;
 
-import cn.hutool.core.collection.CollectionUtil;
 import com.meguru.chatproject.common.domain.dto.RequestInfo;
 import com.meguru.chatproject.common.exception.HttpErrorEnum;
 import com.meguru.chatproject.common.utils.RequestHolder;
 import com.meguru.chatproject.user.domain.enums.BlackTypeEnum;
 import com.meguru.chatproject.user.service.cache.UserCache;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.hutool.core.collection.CollUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -45,7 +45,7 @@ public class BlackInterceptor implements HandlerInterceptor {
     }
 
     private boolean inBlackList(Object target, Set<String> blackSet) {
-        if (Objects.isNull(target) || CollectionUtil.isEmpty(blackSet)) {
+        if (Objects.isNull(target) || CollUtil.isEmpty(blackSet)) {
             return false;
         }
         return blackSet.contains(target.toString());

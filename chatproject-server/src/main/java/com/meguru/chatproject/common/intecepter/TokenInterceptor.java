@@ -3,6 +3,8 @@ package com.meguru.chatproject.common.intecepter;
 import com.meguru.chatproject.common.constant.MDCKey;
 import com.meguru.chatproject.common.exception.HttpErrorEnum;
 import com.meguru.chatproject.user.service.ILoginService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +12,6 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Objects;
 import java.util.Optional;
 

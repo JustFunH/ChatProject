@@ -1,7 +1,5 @@
 package com.meguru.chatproject.user.service.impl;
 
-import cn.hutool.extra.mail.Mail;
-import cn.hutool.extra.mail.MailAccount;
 import com.meguru.chatproject.common.Properties.EmailProperties;
 import com.meguru.chatproject.common.constant.RedisKey;
 import com.meguru.chatproject.common.exception.BusinessErrorEnum;
@@ -11,6 +9,8 @@ import com.meguru.chatproject.common.utils.VerifyCodeUtil;
 import com.meguru.chatproject.user.service.ICaptchaService;
 import com.meguru.chatproject.utils.RedisUtils;
 import lombok.RequiredArgsConstructor;
+import org.dromara.hutool.extra.mail.Mail;
+import org.dromara.hutool.extra.mail.MailAccount;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
@@ -108,7 +108,7 @@ public class CaptchaServiceImpl implements ICaptchaService {
     private void sendEmail(List<String> list, String content) {
         MailAccount account = createMailAccount();
         try {
-            Mail.create(account)
+            Mail.of(account)
                     .setTos(list.toArray(new String[0]))
                     .setTitle("ChatProject注册验证码")
                     .setContent(content)
@@ -133,7 +133,7 @@ public class CaptchaServiceImpl implements ICaptchaService {
         account.setPort(emailProperties.getPort());
         account.setFrom(emailProperties.getFrom());
         account.setUser(emailProperties.getUser());
-        account.setPass(emailProperties.getPassword());
+        account.setPass(emailProperties.getPassword().toCharArray());
         account.setSslEnable(true);
         account.setStarttlsEnable(true);
         return account;

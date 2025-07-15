@@ -1,10 +1,9 @@
 package com.meguru.chatproject.user.domain.vo.request.user;
 
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 /**
  * Description: 登录请求

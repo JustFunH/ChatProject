@@ -1,12 +1,13 @@
 package com.meguru.chatproject.common.utils;
 
-import cn.hutool.core.map.WeakConcurrentMap;
-import cn.hutool.core.util.ReflectUtil;
-import cn.hutool.core.util.StrUtil;
+
 import com.baomidou.mybatisplus.core.toolkit.support.ColumnCache;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import lombok.SneakyThrows;
 import org.apache.ibatis.reflection.property.PropertyNamer;
+import org.dromara.hutool.core.map.reference.WeakConcurrentMap;
+import org.dromara.hutool.core.reflect.method.MethodUtil;
+import org.dromara.hutool.core.text.StrUtil;
 
 import java.io.Serializable;
 import java.lang.invoke.SerializedLambda;
@@ -60,8 +61,8 @@ public class LambdaUtils {
 
     @SneakyThrows
     public static <T> Class<?> getReturnType(SFunction<T, ?> func) {
-        com.baomidou.mybatisplus.core.toolkit.support.SerializedLambda lambda = com.baomidou.mybatisplus.core.toolkit.LambdaUtils.resolve(func);
-        Class<?> aClass = lambda.getInstantiatedType();
+        SerializedLambda lambda = LambdaUtils._resolve(func);
+        Class<?> aClass = Class.forName(lambda.getImplClass().replace('/', '.'));
         String fieldName = PropertyNamer.methodToProperty(lambda.getImplMethodName());
         Field field = aClass.getDeclaredField(fieldName);
         field.setAccessible(true);
@@ -106,7 +107,7 @@ public class LambdaUtils {
      */
     private static SerializedLambda _resolve(Serializable func) {
         return cache.computeIfAbsent(func.getClass().getName(), (key)
-                -> ReflectUtil.invoke(func, "writeReplace"));
+                -> MethodUtil.invoke(func, "writeReplace"));
     }
 
 }

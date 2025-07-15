@@ -31,7 +31,7 @@ public class UserApplyListener {
     @TransactionalEventListener(classes = UserApplyEvent.class, fallbackExecution = true)
     public void notifyFriend(UserApplyEvent event) {
         UserApply userApply = event.getUserApply();
-        Integer unReadCount = userApplyDao.getUnReadCount(userApply.getTargetId());
+        Integer unReadCount = userApplyDao.getUnReadCount(userApply.getTargetId()).intValue();
         pushService.sendPushMsg(WSAdapter.buildApplySend(new WSFriendApply(userApply.getUid(), unReadCount)), userApply.getTargetId());
     }
 

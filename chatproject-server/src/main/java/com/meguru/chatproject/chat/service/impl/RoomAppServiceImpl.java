@@ -1,7 +1,5 @@
 package com.meguru.chatproject.chat.service.impl;
 
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.lang.Pair;
 import com.meguru.chatproject.chat.dao.ContactDao;
 import com.meguru.chatproject.chat.dao.GroupMemberDao;
 import com.meguru.chatproject.chat.dao.MessageDao;
@@ -45,6 +43,8 @@ import com.meguru.chatproject.user.service.IRoleService;
 import com.meguru.chatproject.user.service.cache.UserCache;
 import com.meguru.chatproject.user.service.cache.UserInfoCache;
 import com.meguru.chatproject.user.service.impl.PushService;
+import org.dromara.hutool.core.collection.CollUtil;
+import org.dromara.hutool.core.lang.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -121,10 +121,10 @@ public class RoomAppServiceImpl implements RoomAppService {
             page = CursorPageBaseResp.init(contactPage, baseRoomIds);
         } else {// 用户未登录，只查全局房间
             CursorPageBaseResp<Pair<Long, Double>> roomCursorPage = hotRoomCache.getRoomCursorPage(request);
-            List<Long> roomIds = roomCursorPage.getList().stream().map(Pair::getKey).collect(Collectors.toList());
+            List<Long> roomIds = roomCursorPage.getList().stream().map(Pair::getLeft).collect(Collectors.toList());
             page = CursorPageBaseResp.init(roomCursorPage, roomIds);
         }
-        if (CollectionUtil.isEmpty(page.getList())) {
+        if (CollUtil.isEmpty(page.getList())) {
             return CursorPageBaseResp.empty();
         }
         // 最后组装会话信息（名称，头像，未读数等）
@@ -286,7 +286,7 @@ public class RoomAppServiceImpl implements RoomAppService {
     }
 
     private List<Contact> buildContact(List<Pair<Long, Double>> list, Long uid) {
-        List<Long> roomIds = list.stream().map(Pair::getKey).collect(Collectors.toList());
+        List<Long> roomIds = list.stream().map(Pair::getLeft).collect(Collectors.toList());
         Map<Long, Room> batch = roomCache.getBatch(roomIds);
         Map<Long, Contact> contactMap = new HashMap<>();
         if (Objects.nonNull(uid)) {
@@ -295,15 +295,15 @@ public class RoomAppServiceImpl implements RoomAppService {
         }
         Map<Long, Contact> finalContactMap = contactMap;
         return list.stream().map(pair -> {
-            Long roomId = pair.getKey();
+            Long roomId = pair.getLeft();
             Contact contact = finalContactMap.get(roomId);
             if (Objects.isNull(contact)) {
                 contact = new Contact();
-                contact.setRoomId(pair.getKey());
+                contact.setRoomId(pair.getLeft());
                 Room room = batch.get(roomId);
                 contact.setLastMsgId(room.getLastMsgId());
             }
-            contact.setActiveTime(new Date(pair.getValue().longValue()));
+            contact.setActiveTime(new Date(pair.getRight().longValue()));
             return contact;
         }).collect(Collectors.toList());
     }
@@ -318,7 +318,7 @@ public class RoomAppServiceImpl implements RoomAppService {
         Map<Long, RoomBaseInfo> roomBaseInfoMap = getRoomBaseInfoMap(roomIds, uid);
         // 最后一条消息
         List<Long> msgIds = roomBaseInfoMap.values().stream().map(RoomBaseInfo::getLastMsgId).collect(Collectors.toList());
-        List<Message> messages = CollectionUtil.isEmpty(msgIds) ? new ArrayList<>() : messageDao.listByIds(msgIds);
+        List<Message> messages = CollUtil.isEmpty(msgIds) ? new ArrayList<>() : messageDao.listByIds(msgIds);
         Map<Long, Message> msgMap = messages.stream().collect(Collectors.toMap(Message::getId, Function.identity()));
         Map<Long, User> lastMsgUidMap = userInfoCache.getBatch(messages.stream().map(Message::getFromUid).collect(Collectors.toList()));
         // 消息未读数
@@ -352,12 +352,12 @@ public class RoomAppServiceImpl implements RoomAppService {
         }
         List<Contact> contacts = contactDao.getByRoomIds(roomIds, uid);
         return contacts.parallelStream()
-                .map(contact -> Pair.of(contact.getRoomId(), messageDao.getUnReadCount(contact.getRoomId(), contact.getReadTime())))
-                .collect(Collectors.toMap(Pair::getKey, Pair::getValue));
+                .map(contact -> Pair.of(contact.getRoomId(), messageDao.getUnReadCount(contact.getRoomId(), contact.getReadTime()).intValue()))
+                .collect(Collectors.toMap(Pair::getLeft, Pair::getRight));
     }
 
     private Map<Long, User> getFriendRoomMap(List<Long> roomIds, Long uid) {
-        if (CollectionUtil.isEmpty(roomIds)) {
+        if (CollUtil.isEmpty(roomIds)) {
             return new HashMap<>();
         }
         Map<Long, RoomFriend> roomFriendMap = roomFriendCache.getBatch(roomIds);

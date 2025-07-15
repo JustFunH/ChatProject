@@ -1,10 +1,5 @@
 package com.meguru.chatproject.user.service.impl;
 
-import cn.hutool.core.lang.TypeReference;
-import cn.hutool.core.thread.NamedThreadFactory;
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.http.HttpUtil;
-import cn.hutool.json.JSONUtil;
 import com.meguru.chatproject.common.handler.GlobalUncaughtExceptionHandler;
 import com.meguru.chatproject.user.dao.UserDao;
 import com.meguru.chatproject.user.domain.dto.IpResult;
@@ -14,6 +9,11 @@ import com.meguru.chatproject.user.domain.entity.User;
 import com.meguru.chatproject.user.service.IIpService;
 import com.meguru.chatproject.user.service.cache.UserCache;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.hutool.core.reflect.TypeReference;
+import org.dromara.hutool.core.text.StrUtil;
+import org.dromara.hutool.core.thread.NamedThreadFactory;
+import org.dromara.hutool.http.HttpUtil;
+import org.dromara.hutool.json.JSONUtil;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,8 +62,9 @@ public class IpServiceImpl implements IIpService, DisposableBean {
     public static IpDetail getIpDetailOrNull(String ip) {
         String body = HttpUtil.get("https://ip.taobao.com/outGetIpInfo?ip=" + ip + "&accessKey=alibaba-inc");
         try {
-            IpResult<IpDetail> result = JSONUtil.toBean(body, new TypeReference<IpResult<IpDetail>>() {
-            }, false);
+            IpResult<IpDetail> result = JSONUtil.parse(body).toBean(
+                    new TypeReference<IpResult<IpDetail>>() {
+                    });
             if (result.isSuccess()) {
                 return result.getData();
             }

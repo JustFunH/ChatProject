@@ -1,7 +1,5 @@
 package com.meguru.chatproject.chat.dao;
 
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
@@ -11,6 +9,8 @@ import com.meguru.chatproject.chat.domain.entity.GroupMember;
 import com.meguru.chatproject.chat.domain.enums.GroupRoleEnum;
 import com.meguru.chatproject.chat.mapper.GroupMemberMapper;
 import com.meguru.chatproject.chat.service.cache.GroupMemberCache;
+import org.dromara.hutool.core.collection.CollUtil;
+import org.dromara.hutool.core.util.ObjUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -109,7 +109,7 @@ public class GroupMemberDao extends ServiceImpl<GroupMemberMapper, GroupMember> 
                 .eq(GroupMember::getUid, uid)
                 .eq(GroupMember::getRole, GroupRoleEnum.LEADER.getType())
                 .one();
-        return ObjectUtil.isNotNull(groupMember);
+        return ObjUtil.isNotNull(groupMember);
     }
 
     /**
@@ -125,7 +125,7 @@ public class GroupMemberDao extends ServiceImpl<GroupMemberMapper, GroupMember> 
                 .eq(GroupMember::getUid, uid)
                 .eq(GroupMember::getRole, GroupRoleEnum.MANAGER.getType())
                 .one();
-        return ObjectUtil.isNotNull(groupMember);
+        return ObjUtil.isNotNull(groupMember);
     }
 
     /**
@@ -180,7 +180,7 @@ public class GroupMemberDao extends ServiceImpl<GroupMemberMapper, GroupMember> 
      * @return 是否删除成功
      */
     public Boolean removeByGroupId(Long groupId, List<Long> uidList) {
-        if (CollectionUtil.isNotEmpty(uidList)) {
+        if (CollUtil.isNotEmpty(uidList)) {
             LambdaQueryWrapper<GroupMember> wrapper = new QueryWrapper<GroupMember>()
                     .lambda()
                     .eq(GroupMember::getGroupId, groupId)

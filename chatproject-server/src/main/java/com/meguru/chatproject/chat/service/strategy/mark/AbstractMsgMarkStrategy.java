@@ -8,11 +8,11 @@ import com.meguru.chatproject.chat.domain.enums.MessageMarkTypeEnum;
 import com.meguru.chatproject.common.domain.enums.YesOrNoEnum;
 import com.meguru.chatproject.common.event.MessageMarkEvent;
 import com.meguru.chatproject.common.exception.BusinessException;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
 import java.util.Objects;
 import java.util.Optional;
 

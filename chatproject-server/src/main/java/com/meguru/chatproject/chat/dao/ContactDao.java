@@ -1,6 +1,6 @@
 package com.meguru.chatproject.chat.dao;
 
-import cn.hutool.core.collection.CollectionUtil;
+
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -10,6 +10,7 @@ import com.meguru.chatproject.chat.mapper.ContactMapper;
 import com.meguru.chatproject.common.domain.vo.request.CursorPageBaseReq;
 import com.meguru.chatproject.common.domain.vo.response.CursorPageBaseResp;
 import com.meguru.chatproject.common.utils.CursorUtils;
+import org.dromara.hutool.core.collection.CollUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -33,7 +34,7 @@ public class ContactDao extends ServiceImpl<ContactMapper, Contact> {
                 .one();
     }
 
-    public Integer getReadCount(Message message) {
+    public Long getReadCount(Message message) {
         return lambdaQuery()
                 .eq(Contact::getRoomId, message.getRoomId())
                 .ne(Contact::getUid, message.getFromUid())// 不需要查询出自己
@@ -41,13 +42,13 @@ public class ContactDao extends ServiceImpl<ContactMapper, Contact> {
                 .count();
     }
 
-    public Integer getTotalCount(Long roomId) {
+    public Long getTotalCount(Long roomId) {
         return lambdaQuery()
                 .eq(Contact::getRoomId, roomId)
                 .count();
     }
 
-    public Integer getUnReadCount(Message message) {
+    public Long getUnReadCount(Message message) {
         return lambdaQuery()
                 .eq(Contact::getRoomId, message.getRoomId())
                 .lt(Contact::getReadTime, message.getCreateTime())
@@ -101,7 +102,7 @@ public class ContactDao extends ServiceImpl<ContactMapper, Contact> {
      * @return 是否删除成功
      */
     public Boolean removeByRoomId(Long roomId, List<Long> uidList) {
-        if (CollectionUtil.isNotEmpty(uidList)) {
+        if (CollUtil.isNotEmpty(uidList)) {
             LambdaQueryWrapper<Contact> wrapper = new QueryWrapper<Contact>().lambda()
                     .eq(Contact::getRoomId, roomId)
                     .in(Contact::getUid, uidList);

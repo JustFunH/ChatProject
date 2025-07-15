@@ -1,15 +1,15 @@
 package com.meguru.chatproject.common.utils;
 
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.lang.Pair;
-import cn.hutool.core.util.StrUtil;
-import com.meguru.chatproject.common.domain.vo.request.CursorPageBaseReq;
-import com.meguru.chatproject.common.domain.vo.response.CursorPageBaseResp;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.meguru.chatproject.common.domain.vo.request.CursorPageBaseReq;
+import com.meguru.chatproject.common.domain.vo.response.CursorPageBaseResp;
 import com.meguru.chatproject.utils.RedisUtils;
+import org.dromara.hutool.core.collection.CollUtil;
+import org.dromara.hutool.core.lang.tuple.Pair;
+import org.dromara.hutool.core.text.StrUtil;
 import org.springframework.data.redis.core.ZSetOperations;
 
 import java.util.Date;
@@ -38,10 +38,10 @@ public class CursorUtils {
         List<Pair<T, Double>> result = typedTuples
                 .stream()
                 .map(t -> Pair.of(typeConvert.apply(t.getValue()), t.getScore()))
-                .sorted((o1, o2) -> o2.getValue().compareTo(o1.getValue()))
+                .sorted((o1, o2) -> o2.getRight().compareTo(o1.getRight()))
                 .collect(Collectors.toList());
-        String cursor = Optional.ofNullable(CollectionUtil.getLast(result))
-                .map(Pair::getValue)
+        String cursor = Optional.ofNullable(CollUtil.getLast(result))
+                .map(Pair::getRight)
                 .map(String::valueOf)
                 .orElse(null);
         Boolean isLast = result.size() != cursorPageBaseReq.getPageSize();
@@ -63,7 +63,7 @@ public class CursorUtils {
 
         Page<T> page = mapper.page(request.plusPage(), wrapper);
         //取出游标
-        String cursor = Optional.ofNullable(CollectionUtil.getLast(page.getRecords()))
+        String cursor = Optional.ofNullable(CollUtil.getLast(page.getRecords()))
                 .map(cursorColumn)
                 .map(CursorUtils::toCursor)
                 .orElse(null);

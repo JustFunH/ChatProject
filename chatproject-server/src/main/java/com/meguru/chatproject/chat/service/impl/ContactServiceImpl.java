@@ -44,12 +44,12 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public Integer getMsgReadCount(Message message) {
-        return contactDao.getReadCount(message);
+        return contactDao.getReadCount(message).intValue();
     }
 
     @Override
     public Integer getMsgUnReadCount(Message message) {
-        return contactDao.getUnReadCount(message);
+        return contactDao.getUnReadCount(message).intValue();
     }
 
     @Override
@@ -57,11 +57,11 @@ public class ContactServiceImpl implements ContactService {
         Map<Long, List<Message>> roomGroup = messages.stream().collect(Collectors.groupingBy(Message::getRoomId));
         AssertUtil.equal(roomGroup.size(), 1, BusinessErrorEnum.GROUP_ID_ERROR.getErrorMsg());
         Long roomId = roomGroup.keySet().iterator().next();
-        Integer totalCount = contactDao.getTotalCount(roomId);
+        Integer totalCount = contactDao.getTotalCount(roomId).intValue();
         return messages.stream().map(message -> {
             MsgReadInfoDTO readInfoDTO = new MsgReadInfoDTO();
             readInfoDTO.setMsgId(message.getId());
-            Integer readCount = contactDao.getReadCount(message);
+            Integer readCount = contactDao.getReadCount(message).intValue();
             readInfoDTO.setReadCount(readCount);
             readInfoDTO.setUnReadCount(totalCount - readCount - 1);
             return readInfoDTO;

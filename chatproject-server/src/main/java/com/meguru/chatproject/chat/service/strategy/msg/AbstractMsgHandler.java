@@ -1,16 +1,16 @@
 package com.meguru.chatproject.chat.service.strategy.msg;
 
-import cn.hutool.core.bean.BeanUtil;
 import com.meguru.chatproject.chat.dao.MessageDao;
 import com.meguru.chatproject.chat.domain.entity.Message;
 import com.meguru.chatproject.chat.domain.enums.MessageTypeEnum;
 import com.meguru.chatproject.chat.domain.vo.request.ChatMessageReq;
 import com.meguru.chatproject.chat.service.adapter.MessageAdapter;
 import com.meguru.chatproject.common.utils.AssertUtil;
+import jakarta.annotation.PostConstruct;
+import org.dromara.hutool.core.bean.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
 import java.lang.reflect.ParameterizedType;
 
 /**

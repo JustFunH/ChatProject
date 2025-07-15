@@ -1,6 +1,5 @@
 package com.meguru.chatproject.chat.service.adapter;
 
-import cn.hutool.core.bean.BeanUtil;
 import com.meguru.chatproject.chat.domain.entity.Message;
 import com.meguru.chatproject.chat.domain.entity.MessageMark;
 import com.meguru.chatproject.chat.domain.enums.MessageMarkTypeEnum;
@@ -12,6 +11,7 @@ import com.meguru.chatproject.chat.domain.vo.response.ChatMessageResp;
 import com.meguru.chatproject.chat.service.strategy.msg.AbstractMsgHandler;
 import com.meguru.chatproject.chat.service.strategy.msg.MsgHandlerFactory;
 import com.meguru.chatproject.common.domain.enums.YesOrNoEnum;
+import org.dromara.hutool.core.bean.BeanUtil;
 
 import java.util.*;
 import java.util.stream.Collectors;

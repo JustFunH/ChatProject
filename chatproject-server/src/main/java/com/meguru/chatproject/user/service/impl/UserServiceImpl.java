@@ -1,6 +1,5 @@
 package com.meguru.chatproject.user.service.impl;
 
-import cn.hutool.core.util.StrUtil;
 import com.meguru.chatproject.common.exception.BusinessErrorEnum;
 import com.meguru.chatproject.common.utils.AssertUtil;
 import com.meguru.chatproject.sensitive.algorithm.SensitiveWordBs;
@@ -19,6 +18,7 @@ import com.meguru.chatproject.user.service.adapter.UserAdapter;
 import com.meguru.chatproject.user.service.cache.UserCache;
 import com.meguru.chatproject.user.service.cache.UserSummaryCache;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.hutool.core.text.StrUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

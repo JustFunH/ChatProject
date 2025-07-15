@@ -55,10 +55,10 @@ public class UserEmojiServiceImpl implements IUserEmojiService {
     @RedissonLock(key = "#uid")
     public ApiResult<IdRespVO> insert(UserEmojiReq req, Long uid) {
         //校验表情数量是否超过30
-        int count = userEmojiDao.countByUid(uid);
+        int count = (int) userEmojiDao.countByUid(uid);
         AssertUtil.isFalse(count > 30, BusinessErrorEnum.EMOJI_OUT_OF_RANGE);
         //校验表情是否存在
-        Integer existsCount = userEmojiDao.lambdaQuery()
+        Long existsCount = userEmojiDao.lambdaQuery()
                 .eq(UserEmoji::getExpressionUrl, req.getExpressionUrl())
                 .eq(UserEmoji::getUid, uid)
                 .count();

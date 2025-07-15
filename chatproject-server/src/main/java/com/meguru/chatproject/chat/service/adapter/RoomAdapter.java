@@ -1,6 +1,5 @@
 package com.meguru.chatproject.chat.service.adapter;
 
-import cn.hutool.core.bean.BeanUtil;
 import com.meguru.chatproject.chat.domain.entity.Contact;
 import com.meguru.chatproject.chat.domain.entity.GroupMember;
 import com.meguru.chatproject.chat.domain.entity.Room;
@@ -11,6 +10,7 @@ import com.meguru.chatproject.chat.domain.vo.request.ChatMessageReq;
 import com.meguru.chatproject.chat.domain.vo.response.ChatMessageReadResp;
 import com.meguru.chatproject.chat.domain.vo.response.ChatRoomResp;
 import com.meguru.chatproject.user.domain.entity.User;
+import org.dromara.hutool.core.bean.BeanUtil;
 
 import java.util.List;
 import java.util.Map;

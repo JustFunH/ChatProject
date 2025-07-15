@@ -18,18 +18,18 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.7</version>
+        <version>3.2.5</version>
         <relativePath/>
     </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
+        <java.version>21</java.version>
         <skipTests>true</skipTests>
         <docker.host>http://192.168.3.101:2375</docker.host>
-        <hutool.version>5.8.18</hutool.version>
-        <springfox-swagger.version>3.0.0</springfox-swagger.version>
+        <hutool.version>6.0.0-M20</hutool.version>
+        <!--        <springfox-swagger.version>3.0.0</springfox-swagger.version>-->
         <swagger-models.version>1.6.0</swagger-models.version>
         <mybatis-plus-generator.version>3.4.1</mybatis-plus-generator.version>
         <mybatis.version>3.5.10</mybatis.version>
@@ -39,23 +39,24 @@
         <logstash-logback.version>7.2</logstash-logback.version>
         <minio.version>8.4.5</minio.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
-        <lombok.version>1.18.26</lombok.version>
+        <lombok.version>1.18.30</lombok.version>
         <netty-all.version>4.1.76.Final</netty-all.version>
-        <mybatis-plus-boot-starter.version>3.4.0</mybatis-plus-boot-starter.version>
+        <mybatis-plus-spring-boot3-starter.version>3.5.9</mybatis-plus-spring-boot3-starter.version>
         <jsoup.version>1.15.3</jsoup.version>
         <okhttp.version>4.8.1</okhttp.version>
         <redisson-spring-boot-starter.version>3.17.1</redisson-spring-boot-starter.version>
         <knife4j-spring-boot-starter.version>2.0.9</knife4j-spring-boot-starter.version>
         <java-jwt.version>3.19.0</java-jwt.version>
-        <rocketmq-spring-boot-starter.version>2.2.2</rocketmq-spring-boot-starter.version>
+        <rocketmq-spring-boot-starter.version>2.3.1</rocketmq-spring-boot-starter.version>
         <velocity-engine-core.version>2.0</velocity-engine-core.version>
         <p6spy.version>3.9.1</p6spy.version>
         <spring-test.version>5.3.19</spring-test.version>
         <project.version>1.0-SNAPSHOT</project.version>
         <jsr305.version>3.0.2</jsr305.version>
 
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
     </properties>
-
 
     <dependencyManagement>
         <dependencies>
@@ -89,11 +90,27 @@
                 <artifactId>jsoup</artifactId>
                 <version>${jsoup.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus-boot-starter.version}</version>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+                <version>${mybatis-plus-spring-boot3-starter.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-bom</artifactId>
+                <version>3.5.9</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>3.4.3</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
@@ -106,7 +123,7 @@
                 <version>${netty-all.version}</version>
             </dependency>
             <dependency>
-                <groupId>cn.hutool</groupId>
+                <groupId>org.dromara.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
@@ -116,11 +133,11 @@
             <!--                <artifactId>mybatis</artifactId>-->
             <!--                <version>${mybatis.version}</version>-->
             <!--            </dependency>-->
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-generator</artifactId>
-                <version>${mybatis-plus-generator.version}</version>
-            </dependency>
+            <!--            <dependency>-->
+            <!--                <groupId>com.baomidou</groupId>-->
+            <!--                <artifactId>mybatis-plus-generator</artifactId>-->
+            <!--                <version>${mybatis-plus-generator.version}</version>-->
+            <!--            </dependency>-->
             <!--Mysql数据库驱动-->
             <dependency>
                 <groupId>mysql</groupId>
@@ -128,11 +145,11 @@
                 <version>${mysql-connector.version}</version>
             </dependency>
             <!--JWT(Json Web Token)登录支持-->
-            <dependency>
-                <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt</artifactId>
-                <version>${jjwt.version}</version>
-            </dependency>
+            <!--            <dependency>-->
+            <!--                <groupId>io.jsonwebtoken</groupId>-->
+            <!--                <artifactId>jjwt</artifactId>-->
+            <!--                <version>0.12.6</version>-->
+            <!--            </dependency>-->
             <!-- 阿里云OSS -->
             <dependency>
                 <groupId>io.minio</groupId>
@@ -150,6 +167,13 @@
                 <artifactId>knife4j-spring-boot-starter</artifactId>
                 <version>${knife4j-spring-boot-starter.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>2.6.0</version>
+            </dependency>
+
             <!-- JWT -->
             <dependency>
                 <groupId>com.auth0</groupId>
@@ -185,8 +209,6 @@
             </dependency>
 
         </dependencies>
-
-
     </dependencyManagement>
 
 </project>

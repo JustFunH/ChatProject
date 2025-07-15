@@ -4,10 +4,10 @@ import com.meguru.frequencycontrol.domain.FrequencyControlDTO;
 import com.meguru.frequencycontrol.exception.CommonErrorEnum;
 import com.meguru.frequencycontrol.exception.FrequencyControlException;
 import com.meguru.frequencycontrol.util.AsserUtil;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.ObjectUtils;
 
-import javax.annotation.PostConstruct;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;

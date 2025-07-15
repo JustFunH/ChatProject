@@ -1,0 +1,43 @@
+chatproject:
+  ##################mysql##################
+  mysql:
+    ip: 117.72.201.243
+    port: 3306
+    db: chat
+    username: root
+    password: 'ymz040511'
+  ##################redis##################
+  redis:
+    host: 117.72.201.243
+    port: 6379
+    password: 'ymz040511'
+  ##################jwt##################
+  jwt:
+    secret: MeguruDaiSuki
+
+##################OSS##################
+oss:
+  enabled: true
+  type: minio
+  endpoint: http://117.72.201.243:9000
+  access-key: admin
+  secret-key: 'ymz040511'
+  bucketName: chat
+
+##################MQ##################
+rocketmq:
+  name-server: 117.72.201.243:9876
+  access-key: admin
+  secret-key: 'ymz040511'
+
+##################email##################
+email:
+  host: smtp.qq.com                           # 邮件服务器地址
+  port: 465                                   # 邮件服务器端口，通常587（STARTTLS）或465（SSL）
+  from: Meguru <meguru.suki@foxmail.com>      # 发件人邮箱
+  user: 2258699133@qq.com                     # SMTP登录用户名
+  password: nklllmumecpodjaf                  # SMTP登录密码
+
+
+
+

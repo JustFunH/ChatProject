@@ -2,7 +2,6 @@ package com.meguru.chatproject.sensitive.algorithm;
 
 import com.meguru.chatproject.sensitive.algorithm.ac.ACTrie;
 import com.meguru.chatproject.sensitive.algorithm.ac.MatchResult;
-import org.HdrHistogram.ConcurrentHistogram;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;

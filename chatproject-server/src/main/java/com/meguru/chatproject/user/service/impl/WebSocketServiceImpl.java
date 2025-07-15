@@ -1,8 +1,5 @@
 package com.meguru.chatproject.user.service.impl;
 
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.json.JSONUtil;
 import com.meguru.chatproject.common.config.ThreadPoolConfig;
 import com.meguru.chatproject.common.event.UserOfflineEvent;
 import com.meguru.chatproject.common.event.UserOnlineEvent;
@@ -21,6 +18,9 @@ import com.meguru.chatproject.websocket.NettyUtil;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.hutool.core.collection.CollUtil;
+import org.dromara.hutool.core.util.ObjUtil;
+import org.dromara.hutool.json.JSONUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationEventPublisher;
@@ -142,10 +142,10 @@ public class WebSocketServiceImpl implements WebSocketService {
         ONLINE_WS_MAP.remove(channel);
         if (uidOptional.isPresent()) {
             CopyOnWriteArrayList<Channel> channels = ONLINE_UID_MAP.get(uidOptional.get());
-            if (CollectionUtil.isNotEmpty(channels)) {
+            if (CollUtil.isNotEmpty(channels)) {
                 channels.removeIf(ch -> Objects.equals(ch, channel));
             }
-            return CollectionUtil.isEmpty(ONLINE_UID_MAP.get(uidOptional.get()));
+            return CollUtil.isEmpty(ONLINE_UID_MAP.get(uidOptional.get()));
         }
         return true;
     }
@@ -160,7 +160,7 @@ public class WebSocketServiceImpl implements WebSocketService {
         WSChannelExtraDTO wsChannelExtraDTO =
                 ONLINE_WS_MAP.getOrDefault(channel, new WSChannelExtraDTO());
         WSChannelExtraDTO old = ONLINE_WS_MAP.putIfAbsent(channel, wsChannelExtraDTO);
-        return ObjectUtil.isNull(old) ? wsChannelExtraDTO : old;
+        return ObjUtil.isNull(old) ? wsChannelExtraDTO : old;
     }
 
     @Override
@@ -181,7 +181,7 @@ public class WebSocketServiceImpl implements WebSocketService {
     @Override
     public void sendToUid(WSBaseResp<?> wsBaseResp, Long uid) {
         CopyOnWriteArrayList<Channel> channels = ONLINE_UID_MAP.get(uid);
-        if (CollectionUtil.isEmpty(channels)) {
+        if (CollUtil.isEmpty(channels)) {
             log.info("用户：{}不在线", uid);
             return;
         }

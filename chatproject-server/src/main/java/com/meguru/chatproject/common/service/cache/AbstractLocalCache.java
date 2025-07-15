@@ -50,7 +50,6 @@ public abstract class AbstractLocalCache<IN, OUT> implements BatchCache<IN, OUT>
                         return AbstractLocalCache.this.load(Collections.singletonList(in)).get(in);
                     }
 
-                    @Override
                     public @NonNull Map<IN, OUT> loadAll(@NonNull Iterable<? extends IN> keys) throws Exception {
                         IN[] ins = Iterables.toArray(keys, inClass);
                         return AbstractLocalCache.this.load(Arrays.asList(ins));

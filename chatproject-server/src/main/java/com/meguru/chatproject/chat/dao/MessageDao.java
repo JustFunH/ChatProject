@@ -1,6 +1,5 @@
 package com.meguru.chatproject.chat.dao;
 
-import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -10,6 +9,7 @@ import com.meguru.chatproject.chat.mapper.MessageMapper;
 import com.meguru.chatproject.common.domain.vo.request.CursorPageBaseReq;
 import com.meguru.chatproject.common.domain.vo.response.CursorPageBaseResp;
 import com.meguru.chatproject.common.utils.CursorUtils;
+import org.dromara.hutool.core.collection.CollUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -46,7 +46,7 @@ public class MessageDao extends ServiceImpl<MessageMapper, Message> {
                 .update();
     }
 
-    public Integer getGapCount(Long roomId, Long fromId, Long toId) {
+    public Long getGapCount(Long roomId, Long fromId, Long toId) {
         return lambdaQuery()
                 .eq(Message::getRoomId, roomId)
                 .gt(Message::getId, fromId)
@@ -61,7 +61,7 @@ public class MessageDao extends ServiceImpl<MessageMapper, Message> {
                 .update();
     }
 
-    public Integer getUnReadCount(Long roomId, Date readTime) {
+    public Long getUnReadCount(Long roomId, Date readTime) {
         return lambdaQuery()
                 .eq(Message::getRoomId, roomId)
                 .gt(Objects.nonNull(readTime), Message::getCreateTime, readTime)
@@ -76,7 +76,7 @@ public class MessageDao extends ServiceImpl<MessageMapper, Message> {
      * @return 是否删除成功
      */
     public Boolean removeByRoomId(Long roomId, List<Long> uidList) {
-        if (CollectionUtil.isNotEmpty(uidList)) {
+        if (CollUtil.isNotEmpty(uidList)) {
             LambdaUpdateWrapper<Message> wrapper = new UpdateWrapper<Message>().lambda()
                     .eq(Message::getRoomId, roomId)
                     .in(Message::getFromUid, uidList)

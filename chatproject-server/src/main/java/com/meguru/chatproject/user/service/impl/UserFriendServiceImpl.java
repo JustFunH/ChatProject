@@ -1,6 +1,5 @@
 package com.meguru.chatproject.user.service.impl;
 
-import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.google.common.collect.Lists;
 import com.meguru.chatproject.chat.domain.entity.RoomFriend;
@@ -32,6 +31,7 @@ import com.meguru.chatproject.user.domain.vo.response.friend.FriendUnreadResp;
 import com.meguru.chatproject.user.service.IUserFriendService;
 import com.meguru.chatproject.user.service.adapter.FriendAdapter;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.hutool.core.collection.CollUtil;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -127,7 +127,7 @@ public class UserFriendServiceImpl implements IUserFriendService {
     @Override
     public PageBaseResp<FriendApplyResp> pageApplyFriend(Long uid, PageBaseReq request) {
         IPage<UserApply> userApplyIPage = userApplyDao.friendApplyPage(uid, request.plusPage());
-        if (CollectionUtil.isEmpty(userApplyIPage.getRecords())) {
+        if (CollUtil.isEmpty(userApplyIPage.getRecords())) {
             return PageBaseResp.empty();
         }
         //将这些申请列表设为已读
@@ -150,7 +150,7 @@ public class UserFriendServiceImpl implements IUserFriendService {
      */
     @Override
     public FriendUnreadResp unread(Long uid) {
-        Integer unReadCount = userApplyDao.getUnReadCount(uid);
+        Integer unReadCount = userApplyDao.getUnReadCount(uid).intValue();
         return new FriendUnreadResp(unReadCount);
     }
 
@@ -182,7 +182,7 @@ public class UserFriendServiceImpl implements IUserFriendService {
     @Transactional(rollbackFor = Exception.class)
     public void deleteFriend(Long uid, Long friendUid) {
         List<UserFriend> userFriends = userFriendDao.getUserFriend(uid, friendUid);
-        if (CollectionUtil.isEmpty(userFriends)) {
+        if (CollUtil.isEmpty(userFriends)) {
             log.info("没有好友关系：{},{}", uid, friendUid);
             return;
         }

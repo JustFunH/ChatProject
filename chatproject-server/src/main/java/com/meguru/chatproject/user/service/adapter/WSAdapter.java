@@ -1,6 +1,5 @@
 package com.meguru.chatproject.user.service.adapter;
 
-import cn.hutool.core.bean.BeanUtil;
 import com.meguru.chatproject.chat.domain.dto.ChatMessageMarkDTO;
 import com.meguru.chatproject.chat.domain.dto.ChatMsgRecallDTO;
 import com.meguru.chatproject.chat.domain.vo.response.ChatMemberStatisticResp;
@@ -11,6 +10,7 @@ import com.meguru.chatproject.user.domain.enums.ChatActiveStatusEnum;
 import com.meguru.chatproject.user.domain.enums.WSBaseResp;
 import com.meguru.chatproject.user.domain.enums.WSRespTypeEnum;
 import com.meguru.chatproject.user.domain.vo.response.ws.*;
+import org.dromara.hutool.core.bean.BeanUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

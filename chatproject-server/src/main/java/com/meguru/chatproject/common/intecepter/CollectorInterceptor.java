@@ -1,15 +1,16 @@
 package com.meguru.chatproject.common.intecepter;
 
-import cn.hutool.extra.servlet.ServletUtil;
+
 import com.meguru.chatproject.common.domain.dto.RequestInfo;
 import com.meguru.chatproject.common.utils.RequestHolder;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.hutool.http.server.servlet.ServletUtil;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
 /**

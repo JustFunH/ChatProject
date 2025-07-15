@@ -26,7 +26,7 @@ public class MessageMarkDao extends ServiceImpl<MessageMarkMapper, MessageMark> 
                 .one();
     }
 
-    public Integer getMarkCount(Long msgId, Integer markType) {
+    public Long getMarkCount(Long msgId, Integer markType) {
         return lambdaQuery().eq(MessageMark::getMsgId, msgId)
                 .eq(MessageMark::getType, markType)
                 .eq(MessageMark::getStatus, NormalOrNoEnum.NORMAL.getStatus())

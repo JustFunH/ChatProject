@@ -1,10 +1,10 @@
 package com.meguru.chatproject.common.utils.discover;
 
-import cn.hutool.core.util.ReUtil;
-import cn.hutool.core.util.StrUtil;
 import com.meguru.chatproject.common.utils.FutureUtils;
 import com.meguru.chatproject.common.utils.discover.domain.UrlInfo;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.hutool.core.regex.ReUtil;
+import org.dromara.hutool.core.text.StrUtil;
 import org.jetbrains.annotations.Nullable;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;

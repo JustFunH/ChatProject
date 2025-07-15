@@ -1,6 +1,5 @@
 package com.meguru.chatproject.user.service.impl;
 
-import cn.hutool.core.util.StrUtil;
 import com.meguru.chatproject.common.constant.RedisKey;
 import com.meguru.chatproject.common.exception.BusinessErrorEnum;
 import com.meguru.chatproject.common.utils.AssertUtil;
@@ -15,6 +14,7 @@ import com.meguru.chatproject.user.service.ILoginService;
 import com.meguru.chatproject.user.service.adapter.UserAdapter;
 import com.meguru.chatproject.utils.RedisUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.hutool.core.text.StrUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;

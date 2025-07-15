@@ -1,14 +1,15 @@
 package com.meguru.frequencycontrol.util;
 
-import cn.hutool.core.util.ObjectUtil;
+
 import com.meguru.frequencycontrol.exception.CommonErrorEnum;
 import com.meguru.frequencycontrol.exception.ErrorEnum;
 import com.meguru.frequencycontrol.exception.FrequencyControlException;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import org.dromara.hutool.core.util.ObjUtil;
 import org.hibernate.validator.HibernateValidator;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
 import java.text.MessageFormat;
 import java.util.*;
 
@@ -131,19 +132,19 @@ public class AsserUtil {
     }
 
     public static void equal(Object o1, Object o2, String msg) {
-        if (!ObjectUtil.equal(o1, o2)) {
+        if (!ObjUtil.equals(o1, o2)) {
             throwException(msg);
         }
     }
 
     public static void notEqual(Object o1, Object o2, String msg) {
-        if (ObjectUtil.equal(o1, o2)) {
+        if (ObjUtil.equals(o1, o2)) {
             throwException(msg);
         }
     }
 
     private static boolean isEmpty(Object obj) {
-        return ObjectUtil.isEmpty(obj);
+        return ObjUtil.isEmpty(obj);
     }
 
     private static void throwException(String msg) {

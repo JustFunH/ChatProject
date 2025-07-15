@@ -1,11 +1,11 @@
 package com.meguru.chatproject.chat.service.cache;
 
-import cn.hutool.core.lang.Pair;
 import com.meguru.chatproject.common.constant.RedisKey;
 import com.meguru.chatproject.common.domain.vo.request.CursorPageBaseReq;
 import com.meguru.chatproject.common.domain.vo.response.CursorPageBaseResp;
 import com.meguru.chatproject.common.utils.CursorUtils;
 import com.meguru.chatproject.utils.RedisUtils;
+import org.dromara.hutool.core.lang.tuple.Pair;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Component;
 

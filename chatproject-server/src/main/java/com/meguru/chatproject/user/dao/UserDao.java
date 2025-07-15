@@ -1,6 +1,5 @@
 package com.meguru.chatproject.user.dao;
 
-import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.meguru.chatproject.common.domain.enums.NormalOrNoEnum;
@@ -10,6 +9,7 @@ import com.meguru.chatproject.common.utils.CursorUtils;
 import com.meguru.chatproject.user.domain.entity.User;
 import com.meguru.chatproject.user.domain.enums.ChatActiveStatusEnum;
 import com.meguru.chatproject.user.mapper.UserMapper;
+import org.dromara.hutool.core.collection.CollUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -56,10 +56,10 @@ public class UserDao extends ServiceImpl<UserMapper, User> {
                 .list();
     }
 
-    public Integer getOnlineCount(List<Long> memberUidList) {
+    public Long getOnlineCount(List<Long> memberUidList) {
         return lambdaQuery()
                 .eq(User::getActiveStatus, ChatActiveStatusEnum.ONLINE.getStatus())
-                .in(CollectionUtil.isNotEmpty(memberUidList), User::getId, memberUidList)
+                .in(CollUtil.isNotEmpty(memberUidList), User::getId, memberUidList)
                 .count();
     }
 

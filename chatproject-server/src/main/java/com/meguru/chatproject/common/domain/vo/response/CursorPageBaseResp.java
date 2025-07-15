@@ -1,12 +1,12 @@
 package com.meguru.chatproject.common.domain.vo.response;
 
-import cn.hutool.core.collection.CollectionUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.dromara.hutool.core.collection.CollUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +40,7 @@ public class CursorPageBaseResp<T> {
 
     @JsonIgnore
     public Boolean isEmpty() {
-        return CollectionUtil.isEmpty(list);
+        return CollUtil.isEmpty(list);
     }
 
     public static <T> CursorPageBaseResp<T> empty() {

@@ -1,8 +1,8 @@
 package com.meguru.chatproject.chat.service.helper;
 
-import cn.hutool.core.lang.Pair;
-import cn.hutool.core.util.StrUtil;
 import com.meguru.chatproject.user.domain.enums.ChatActiveStatusEnum;
+import org.dromara.hutool.core.lang.tuple.Pair;
+import org.dromara.hutool.core.text.StrUtil;
 
 /**
  * Description: 成员列表工具类

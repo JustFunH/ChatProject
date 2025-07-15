@@ -1,10 +1,10 @@
 package com.meguru.chatproject.user.service.adapter;
 
-import cn.hutool.core.bean.BeanUtil;
 import com.meguru.chatproject.user.domain.entity.User;
 import com.meguru.chatproject.user.domain.vo.response.user.LoginSuccess;
 import com.meguru.chatproject.user.domain.vo.response.user.UserInfoResp;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.hutool.core.bean.BeanUtil;
 
 /**
  * Description: 用户适配器

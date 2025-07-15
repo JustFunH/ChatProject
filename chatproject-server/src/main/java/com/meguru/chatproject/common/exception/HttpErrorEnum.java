@@ -1,13 +1,14 @@
 package com.meguru.chatproject.common.exception;
 
-import cn.hutool.http.ContentType;
-import cn.hutool.json.JSONUtil;
-import com.meguru.chatproject.common.domain.vo.response.ApiResult;
+
 import com.google.common.base.Charsets;
+import com.meguru.chatproject.common.domain.vo.response.ApiResult;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.dromara.hutool.http.meta.ContentType;
+import org.dromara.hutool.json.JSONUtil;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**

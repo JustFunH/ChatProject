@@ -42,7 +42,7 @@ public class MessageMarkListener {
             return;
         }
         //消息被标记次数
-        Integer markCount = messageMarkDao.getMarkCount(dto.getMsgId(), dto.getMarkType());
+        Integer markCount = messageMarkDao.getMarkCount(dto.getMsgId(), dto.getMarkType()).intValue();
         MessageMarkTypeEnum markTypeEnum = MessageMarkTypeEnum.of(dto.getMarkType());
         if (markCount < markTypeEnum.getRiseNum()) {
             return;
@@ -53,7 +53,7 @@ public class MessageMarkListener {
     @TransactionalEventListener(classes = MessageMarkEvent.class, fallbackExecution = true)
     public void notifyAll(MessageMarkEvent event) {//后续可做合并查询，目前异步影响不大
         ChatMessageMarkDTO dto = event.getDto();
-        Integer markCount = messageMarkDao.getMarkCount(dto.getMsgId(), dto.getMarkType());
+        Integer markCount = messageMarkDao.getMarkCount(dto.getMsgId(), dto.getMarkType()).intValue();
         pushService.sendPushMsg(WSAdapter.buildMsgMarkSend(dto, markCount));
     }
 

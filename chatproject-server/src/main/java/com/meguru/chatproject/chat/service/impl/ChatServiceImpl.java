@@ -1,10 +1,5 @@
 package com.meguru.chatproject.chat.service.impl;
 
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.date.DateUnit;
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.lang.Pair;
 import com.meguru.chatproject.chat.dao.*;
 import com.meguru.chatproject.chat.domain.dto.MsgReadInfoDTO;
 import com.meguru.chatproject.chat.domain.entity.*;
@@ -44,6 +39,10 @@ import com.meguru.chatproject.user.domain.vo.response.ws.ChatMemberResp;
 import com.meguru.chatproject.user.service.IRoleService;
 import com.meguru.chatproject.user.service.cache.UserCache;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.hutool.core.collection.CollUtil;
+import org.dromara.hutool.core.date.DateUnit;
+import org.dromara.hutool.core.date.DateUtil;
+import org.dromara.hutool.core.lang.tuple.Pair;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -144,8 +143,8 @@ public class ChatServiceImpl implements ChatService {
     @Override
     public CursorPageBaseResp<ChatMemberResp> getMemberPage(List<Long> memberUidList, MemberReq request) {
         Pair<ChatActiveStatusEnum, String> pair = ChatMemberHelper.getCursorPair(request.getCursor());
-        ChatActiveStatusEnum activeStatusEnum = pair.getKey();
-        String timeCursor = pair.getValue();
+        ChatActiveStatusEnum activeStatusEnum = pair.getLeft();
+        String timeCursor = pair.getRight();
         List<ChatMemberResp> resultList = new ArrayList<>();//最终列表
         Boolean isLast = Boolean.FALSE;
         if (activeStatusEnum == ChatActiveStatusEnum.ONLINE) {//在线列表
@@ -266,7 +265,7 @@ public class ChatServiceImpl implements ChatService {
         } else {
             page = contactDao.getUnReadPage(message, request);
         }
-        if (CollectionUtil.isEmpty(page.getList())) {
+        if (CollUtil.isEmpty(page.getList())) {
             return CursorPageBaseResp.empty();
         }
         return CursorPageBaseResp.init(page, RoomAdapter.buildReadResp(page.getList()));
@@ -304,7 +303,7 @@ public class ChatServiceImpl implements ChatService {
     }
 
     public List<ChatMessageResp> getMsgRespBatch(List<Message> messages, Long receiveUid) {
-        if (CollectionUtil.isEmpty(messages)) {
+        if (CollUtil.isEmpty(messages)) {
             return new ArrayList<>();
         }
         //查询消息标志
