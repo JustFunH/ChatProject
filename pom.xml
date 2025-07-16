@@ -28,31 +28,21 @@
         <java.version>21</java.version>
         <skipTests>true</skipTests>
         <docker.host>http://192.168.3.101:2375</docker.host>
+        <project.version>1.0-SNAPSHOT</project.version>
         <hutool.version>6.0.0-M20</hutool.version>
-        <!--        <springfox-swagger.version>3.0.0</springfox-swagger.version>-->
-        <swagger-models.version>1.6.0</swagger-models.version>
-        <mybatis-plus-generator.version>3.4.1</mybatis-plus-generator.version>
-        <mybatis.version>3.5.10</mybatis.version>
-        <mysql-connector.version>8.0.29</mysql-connector.version>
-        <spring-data-commons.version>2.7.5</spring-data-commons.version>
-        <jjwt.version>0.9.1</jjwt.version>
-        <logstash-logback.version>7.2</logstash-logback.version>
-        <minio.version>8.4.5</minio.version>
-        <jaxb-api.version>2.3.1</jaxb-api.version>
+        <mybatis-plus.version>3.5.9</mybatis-plus.version>
+        <mysql-connector.version>8.0.33</mysql-connector.version>
+        <minio.version>8.5.17</minio.version>
         <lombok.version>1.18.30</lombok.version>
         <netty-all.version>4.1.76.Final</netty-all.version>
-        <mybatis-plus-spring-boot3-starter.version>3.5.9</mybatis-plus-spring-boot3-starter.version>
-        <jsoup.version>1.15.3</jsoup.version>
-        <okhttp.version>4.8.1</okhttp.version>
-        <redisson-spring-boot-starter.version>3.17.1</redisson-spring-boot-starter.version>
-        <knife4j-spring-boot-starter.version>2.0.9</knife4j-spring-boot-starter.version>
-        <java-jwt.version>3.19.0</java-jwt.version>
+        <jsoup.version>1.18.3</jsoup.version>
+        <redisson-spring-boot-starter.version>3.45.1</redisson-spring-boot-starter.version>
+        <knife4j-spring-boot-starter.version>3.0.3</knife4j-spring-boot-starter.version>
+        <springdoc.version>2.6.0</springdoc.version>
+        <java-jwt.version>4.4.0</java-jwt.version>
         <rocketmq-spring-boot-starter.version>2.3.1</rocketmq-spring-boot-starter.version>
-        <velocity-engine-core.version>2.0</velocity-engine-core.version>
         <p6spy.version>3.9.1</p6spy.version>
-        <spring-test.version>5.3.19</spring-test.version>
-        <project.version>1.0-SNAPSHOT</project.version>
-        <jsr305.version>3.0.2</jsr305.version>
+        <jakarta-mail.version>2.0.1</jakarta-mail.version>
 
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
@@ -60,152 +50,133 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <!-- 工具类 -->
             <dependency>
                 <groupId>com.meguru</groupId>
                 <artifactId>chatproject-common-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
+            <!-- 频率控制 -->
             <dependency>
                 <groupId>com.meguru</groupId>
                 <artifactId>chatproject-frequency-control</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
+            <!-- 对象存储 -->
             <dependency>
                 <groupId>com.meguru</groupId>
                 <artifactId>chatproject-oss-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
+            <!-- 事务控制 -->
             <dependency>
                 <groupId>com.meguru</groupId>
                 <artifactId>chatproject-transaction</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.squareup.okhttp3</groupId>
-                <artifactId>okhttp</artifactId>
-                <version>${okhttp.version}</version>
-            </dependency>
+
+            <!-- jsoup | HTML解析 -->
             <dependency>
                 <groupId>org.jsoup</groupId>
                 <artifactId>jsoup</artifactId>
                 <version>${jsoup.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
-                <version>${mybatis-plus-spring-boot3-starter.version}</version>
-            </dependency>
-
+            <!-- mybatis-plus-bom | 聚合plus版本 -->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-bom</artifactId>
-                <version>3.5.9</version>
+                <version>${mybatis-plus.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
 
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-data-redis</artifactId>
-                <version>3.4.3</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-            </dependency>
-            <!-- netty -->
-            <dependency>
-                <groupId>io.netty</groupId>
-                <artifactId>netty-all</artifactId>
-                <version>${netty-all.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.dromara.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
-                <version>${hutool.version}</version>
-            </dependency>
-            <!-- MyBatis-->
-            <!--            <dependency>-->
-            <!--                <groupId>org.mybatis</groupId>-->
-            <!--                <artifactId>mybatis</artifactId>-->
-            <!--                <version>${mybatis.version}</version>-->
-            <!--            </dependency>-->
-            <!--            <dependency>-->
-            <!--                <groupId>com.baomidou</groupId>-->
-            <!--                <artifactId>mybatis-plus-generator</artifactId>-->
-            <!--                <version>${mybatis-plus-generator.version}</version>-->
-            <!--            </dependency>-->
-            <!--Mysql数据库驱动-->
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql-connector.version}</version>
-            </dependency>
-            <!--JWT(Json Web Token)登录支持-->
-            <!--            <dependency>-->
-            <!--                <groupId>io.jsonwebtoken</groupId>-->
-            <!--                <artifactId>jjwt</artifactId>-->
-            <!--                <version>0.12.6</version>-->
-            <!--            </dependency>-->
-            <!-- 阿里云OSS -->
-            <dependency>
-                <groupId>io.minio</groupId>
-                <artifactId>minio</artifactId>
-                <version>${minio.version}</version>
-            </dependency>
+            <!-- Redisson ｜ 分布式锁 -->
             <dependency>
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-boot-starter</artifactId>
                 <version>${redisson-spring-boot-starter.version}</version>
             </dependency>
-            <!-- Swagger2 -->
+
+            <!-- lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+            <!-- netty | WebSocket通信 -->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>${netty-all.version}</version>
+            </dependency>
+
+            <!-- hutool ｜ 工具类 -->
+            <dependency>
+                <groupId>org.dromara.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <!--Mysql ｜ 数据库驱动-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector.version}</version>
+            </dependency>
+
+            <!-- Minio ｜ 对象存储 -->
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>${minio.version}</version>
+            </dependency>
+
+            <!-- Swagger2 | 接口文档 -->
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-spring-boot-starter</artifactId>
                 <version>${knife4j-spring-boot-starter.version}</version>
             </dependency>
 
+            <!-- SpringDoc | Swagger依赖 -->
             <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-                <version>2.6.0</version>
+                <version>${springdoc.version}</version>
             </dependency>
 
-            <!-- JWT -->
+            <!-- JWT ｜ JWT令牌-->
             <dependency>
                 <groupId>com.auth0</groupId>
                 <artifactId>java-jwt</artifactId>
                 <version>${java-jwt.version}</version>
             </dependency>
-            <!-- RocketMQ -->
+
+            <!-- RocketMQ ｜ 消息队列 -->
             <dependency>
                 <groupId>org.apache.rocketmq</groupId>
                 <artifactId>rocketmq-spring-boot-starter</artifactId>
                 <version>${rocketmq-spring-boot-starter.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.apache.velocity</groupId>
-                <artifactId>velocity-engine-core</artifactId>
-                <version>${velocity-engine-core.version}</version>
-            </dependency>
+
+            <!-- p6spy ｜ 数据库日志 -->
             <dependency>
                 <groupId>p6spy</groupId>
                 <artifactId>p6spy</artifactId>
                 <version>${p6spy.version}</version>
             </dependency>
+
+            <!-- 邮件发送 -->
             <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-test</artifactId>
-                <version>${spring-test.version}</version>
-            </dependency>
-            <!-- JSR305 提供@Nullable和@Nonnull -->
-            <dependency>
-                <groupId>com.google.code.findbugs</groupId>
-                <artifactId>jsr305</artifactId>
-                <version>${jsr305.version}</version>
+                <groupId>com.sun.mail</groupId>
+                <artifactId>jakarta.mail</artifactId>
+                <version>${jakarta-mail.version}</version>
             </dependency>
 
         </dependencies>

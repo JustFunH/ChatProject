@@ -4,7 +4,8 @@ package com.meguru.frequencycontrol.service;
 import com.meguru.frequencycontrol.domain.FrequencyControlDTO;
 import com.meguru.frequencycontrol.exception.CommonErrorEnum;
 import com.meguru.frequencycontrol.util.AsserUtil;
-import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.util.ObjectUtils;
+
 import java.util.List;
 
 /**
@@ -52,6 +53,9 @@ public class FrequencyControlUtil {
     }
 
 
+    /**
+     * 私有构造器
+     */
     private FrequencyControlUtil() {
 
     }

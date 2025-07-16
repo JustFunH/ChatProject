@@ -1,7 +1,7 @@
 package com.meguru.chatproject.sensitive.algorithm;
 
 import com.meguru.chatproject.sensitive.algorithm.acpro.ACProTrie;
-import io.micrometer.core.instrument.util.StringUtils;
+import io.micrometer.common.util.StringUtils;
 
 import java.util.List;
 import java.util.Objects;
